@@ -1700,7 +1700,167 @@ public class QuantityMeasurementAppTest {
         double result = a.subtract(b).divide(c);
         assertEquals(3.0, result, 1e-9, "(10-4)/2 = 3");
     }
+
+    // ============================================================
+    // UC-13: ArithmeticOperation Enum & DRY Refactor Tests
+    // ============================================================
+
+    // --- ArithmeticOperation Enum Tests ---
+
+    @Test
+    public void testArithmeticOperation_ADD_Compute() {
+        assertEquals(7.0, Quantity.ArithmeticOperation.ADD.compute(3.0, 4.0), 1e-9,
+                "ADD.compute(3, 4) = 7");
+    }
+
+    @Test
+    public void testArithmeticOperation_SUBTRACT_Compute() {
+        assertEquals(1.0, Quantity.ArithmeticOperation.SUBTRACT.compute(5.0, 4.0), 1e-9,
+                "SUBTRACT.compute(5, 4) = 1");
+    }
+
+    @Test
+    public void testArithmeticOperation_DIVIDE_Compute() {
+        assertEquals(2.5, Quantity.ArithmeticOperation.DIVIDE.compute(5.0, 2.0), 1e-9,
+                "DIVIDE.compute(5, 2) = 2.5");
+    }
+
+    @Test
+    public void testArithmeticOperation_ADD_WithNegatives() {
+        assertEquals(-1.0, Quantity.ArithmeticOperation.ADD.compute(-3.0, 2.0), 1e-9,
+                "ADD(-3, 2) = -1");
+    }
+
+    @Test
+    public void testArithmeticOperation_SUBTRACT_WithNegatives() {
+        assertEquals(-8.0, Quantity.ArithmeticOperation.SUBTRACT.compute(-3.0, 5.0), 1e-9,
+                "SUBTRACT(-3, 5) = -8");
+    }
+
+    @Test
+    public void testArithmeticOperation_DIVIDE_ThrowsArithmeticException() {
+        assertThrows(ArithmeticException.class,
+                () -> Quantity.ArithmeticOperation.DIVIDE.compute(5.0, 0.0),
+                "DIVIDE by zero should throw");
+    }
+
+    @Test
+    public void testArithmeticOperation_DIVIDE_ThrowsForNearZero() {
+        assertThrows(ArithmeticException.class,
+                () -> Quantity.ArithmeticOperation.DIVIDE.compute(5.0, 1e-13),
+                "DIVIDE by near-zero should throw");
+    }
+
+    @Test
+    public void testArithmeticOperation_ADD_WithZero() {
+        assertEquals(5.0, Quantity.ArithmeticOperation.ADD.compute(5.0, 0.0), 1e-9);
+    }
+
+    @Test
+    public void testArithmeticOperation_SUBTRACT_SameValues() {
+        assertEquals(0.0, Quantity.ArithmeticOperation.SUBTRACT.compute(5.0, 5.0), 1e-9);
+    }
+
+    @Test
+    public void testArithmeticOperation_DIVIDE_UnitRatio() {
+        assertEquals(1.0, Quantity.ArithmeticOperation.DIVIDE.compute(5.0, 5.0), 1e-9,
+                "DIVIDE same values = 1");
+    }
+
+    @Test
+    public void testArithmeticOperation_AllConstants_EnumValues() {
+        Quantity.ArithmeticOperation[] ops = Quantity.ArithmeticOperation.values();
+        assertEquals(3, ops.length, "Should have exactly 3 operations: ADD, SUBTRACT, DIVIDE");
+    }
+
+    @Test
+    public void testArithmeticOperation_EnumOrdering() {
+        assertEquals(Quantity.ArithmeticOperation.ADD, Quantity.ArithmeticOperation.values()[0]);
+        assertEquals(Quantity.ArithmeticOperation.SUBTRACT, Quantity.ArithmeticOperation.values()[1]);
+        assertEquals(Quantity.ArithmeticOperation.DIVIDE, Quantity.ArithmeticOperation.values()[2]);
+    }
+
+    @Test
+    public void testArithmeticOperation_ADD_LargeValues() {
+        assertEquals(2e6, Quantity.ArithmeticOperation.ADD.compute(1e6, 1e6), 1e-3);
+    }
+
+    @Test
+    public void testArithmeticOperation_SUBTRACT_LargeValues() {
+        assertEquals(5e5, Quantity.ArithmeticOperation.SUBTRACT.compute(1e6, 5e5), 1e-3);
+    }
+
+    @Test
+    public void testArithmeticOperation_DIVIDE_SmallRatio() {
+        assertEquals(0.5, Quantity.ArithmeticOperation.DIVIDE.compute(1.0, 2.0), 1e-9);
+    }
+
+    // --- DRY Refactor Regression Tests ---
+    // These confirm existing UC11/UC12 operations work through the new refactored code paths
+
+    @Test
+    public void testRefactor_Add_WorksCorrectly() {
+        Quantity<LengthUnit> q1 = new Quantity<>(1.0, LengthUnit.FEET);
+        Quantity<LengthUnit> q2 = new Quantity<>(12.0, LengthUnit.INCHES);
+        Quantity<LengthUnit> result = q1.add(q2);
+        assertEquals(2.0, result.getValue(), 1e-4, "1 ft + 12 in = 2 ft (after refactor)");
+    }
+
+    @Test
+    public void testRefactor_Subtract_WorksCorrectly() {
+        Quantity<LengthUnit> q1 = new Quantity<>(10.0, LengthUnit.FEET);
+        Quantity<LengthUnit> q2 = new Quantity<>(5.0, LengthUnit.FEET);
+        Quantity<LengthUnit> result = q1.subtract(q2);
+        assertEquals(5.0, result.getValue(), 1e-4, "10 - 5 = 5 ft (after refactor)");
+    }
+
+    @Test
+    public void testRefactor_Divide_WorksCorrectly() {
+        Quantity<LengthUnit> q1 = new Quantity<>(10.0, LengthUnit.FEET);
+        Quantity<LengthUnit> q2 = new Quantity<>(2.0, LengthUnit.FEET);
+        assertEquals(5.0, q1.divide(q2), 1e-9, "10 / 2 = 5 (after refactor)");
+    }
+
+    @Test
+    public void testRefactor_VolumeAdd_WorksCorrectly() {
+        Quantity<VolumeUnit> q1 = new Quantity<>(1.0, VolumeUnit.LITRE);
+        Quantity<VolumeUnit> q2 = new Quantity<>(1000.0, VolumeUnit.MILLILITRE);
+        Quantity<VolumeUnit> result = q1.add(q2);
+        assertEquals(2.0, result.getValue(), 1e-4, "1L + 1000mL = 2L (after refactor)");
+    }
+
+    @Test
+    public void testRefactor_WeightSubtract_WorksCorrectly() {
+        Quantity<WeightUnit> q1 = new Quantity<>(2.0, WeightUnit.KILOGRAM);
+        Quantity<WeightUnit> q2 = new Quantity<>(1000.0, WeightUnit.GRAM);
+        Quantity<WeightUnit> result = q1.subtract(q2);
+        assertEquals(1.0, result.getValue(), 1e-4, "2kg - 1000g = 1kg (after refactor)");
+    }
+
+    @Test
+    public void testRefactor_VolumeDivide_WorksCorrectly() {
+        Quantity<VolumeUnit> q1 = new Quantity<>(10.0, VolumeUnit.LITRE);
+        Quantity<VolumeUnit> q2 = new Quantity<>(5.0, VolumeUnit.LITRE);
+        assertEquals(2.0, q1.divide(q2), 1e-9, "10L / 5L = 2.0 (after refactor)");
+    }
+
+    @Test
+    public void testRefactor_ExplicitTargetUnit_Preserved() {
+        Quantity<LengthUnit> q1 = new Quantity<>(10.0, LengthUnit.FEET);
+        Quantity<LengthUnit> q2 = new Quantity<>(6.0, LengthUnit.INCHES);
+        Quantity<LengthUnit> result = q1.subtract(q2, LengthUnit.INCHES);
+        assertEquals(114.0, result.getValue(), 1e-4, "10ft - 6in in INCHES = 114in (after refactor)");
+    }
+
+    @Test
+    public void testRefactor_BackwardCompatibility_LegacyEquality() {
+        // UC-1 to UC-5 legacy operations must still work
+        Quantity<LengthUnit> a = new Quantity<>(1.0, LengthUnit.FEET);
+        Quantity<LengthUnit> b = new Quantity<>(12.0, LengthUnit.INCHES);
+        assertTrue(a.equals(b), "UC-1 equality preserved after UC-13 refactor");
+    }
 }
+
 
 
 
