@@ -1888,7 +1888,7 @@ public class QuantityMeasurementAppTest {
 
     @Test
     public void testService_CompareEquality_True() {
-        QuantityMeasurementService service = new QuantityMeasurementService();
+        QuantityMeasurementService service = new QuantityMeasurementService(null);
         QuantityEntity<LengthUnit> entity = new QuantityEntity<>(1.0, LengthUnit.FEET, 12.0, LengthUnit.INCHES, "EQUALITY");
         QuantityEntity<LengthUnit> response = service.compareEquality(entity);
         assertFalse(response.isHasError());
@@ -1897,7 +1897,7 @@ public class QuantityMeasurementAppTest {
 
     @Test
     public void testService_CompareEquality_False() {
-        QuantityMeasurementService service = new QuantityMeasurementService();
+        QuantityMeasurementService service = new QuantityMeasurementService(null);
         QuantityEntity<LengthUnit> entity = new QuantityEntity<>(1.0, LengthUnit.FEET, 1.0, LengthUnit.INCHES, "EQUALITY");
         QuantityEntity<LengthUnit> response = service.compareEquality(entity);
         assertFalse(response.isHasError());
@@ -1906,7 +1906,7 @@ public class QuantityMeasurementAppTest {
 
     @Test
     public void testService_Convert() {
-        QuantityMeasurementService service = new QuantityMeasurementService();
+        QuantityMeasurementService service = new QuantityMeasurementService(null);
         QuantityEntity<VolumeUnit> entity = new QuantityEntity<>(1.0, VolumeUnit.LITRE, "CONVERSION", VolumeUnit.MILLILITRE);
         QuantityEntity<VolumeUnit> response = service.convert(entity);
         assertFalse(response.isHasError());
@@ -1916,7 +1916,7 @@ public class QuantityMeasurementAppTest {
 
     @Test
     public void testService_Add_ImplicitTarget() {
-        QuantityMeasurementService service = new QuantityMeasurementService();
+        QuantityMeasurementService service = new QuantityMeasurementService(null);
         QuantityEntity<WeightUnit> entity = new QuantityEntity<>(1.0, WeightUnit.KILOGRAM, 500.0, WeightUnit.GRAM, "ADDITION");
         QuantityEntity<WeightUnit> response = service.add(entity);
         assertFalse(response.isHasError());
@@ -1926,7 +1926,7 @@ public class QuantityMeasurementAppTest {
 
     @Test
     public void testService_Add_ExplicitTarget() {
-        QuantityMeasurementService service = new QuantityMeasurementService();
+        QuantityMeasurementService service = new QuantityMeasurementService(null);
         QuantityEntity<WeightUnit> entity = new QuantityEntity<>(1.0, WeightUnit.KILOGRAM, 500.0, WeightUnit.GRAM, "ADDITION");
         entity.setResultUnit(WeightUnit.GRAM);
         QuantityEntity<WeightUnit> response = service.add(entity);
@@ -1937,7 +1937,7 @@ public class QuantityMeasurementAppTest {
 
     @Test
     public void testService_Subtract() {
-        QuantityMeasurementService service = new QuantityMeasurementService();
+        QuantityMeasurementService service = new QuantityMeasurementService(null);
         QuantityEntity<LengthUnit> entity = new QuantityEntity<>(10.0, LengthUnit.FEET, 2.0, LengthUnit.FEET, "SUBTRACTION");
         QuantityEntity<LengthUnit> response = service.subtract(entity);
         assertFalse(response.isHasError());
@@ -1946,7 +1946,7 @@ public class QuantityMeasurementAppTest {
 
     @Test
     public void testService_Divide() {
-        QuantityMeasurementService service = new QuantityMeasurementService();
+        QuantityMeasurementService service = new QuantityMeasurementService(null);
         QuantityEntity<VolumeUnit> entity = new QuantityEntity<>(10.0, VolumeUnit.LITRE, 2.0, VolumeUnit.LITRE, "DIVISION");
         QuantityEntity<VolumeUnit> response = service.divide(entity);
         assertFalse(response.isHasError());
@@ -1956,7 +1956,7 @@ public class QuantityMeasurementAppTest {
 
     @Test
     public void testService_ErrorHandling_NullUnit() {
-        QuantityMeasurementService service = new QuantityMeasurementService();
+        QuantityMeasurementService service = new QuantityMeasurementService(null);
         QuantityEntity<LengthUnit> entity = new QuantityEntity<>(1.0, null, 1.0, LengthUnit.FEET, "ADDITION");
         QuantityEntity<LengthUnit> response = service.add(entity);
         assertTrue(response.isHasError());
@@ -1965,7 +1965,7 @@ public class QuantityMeasurementAppTest {
 
     @Test
     public void testService_ErrorHandling_DivideByZero() {
-        QuantityMeasurementService service = new QuantityMeasurementService();
+        QuantityMeasurementService service = new QuantityMeasurementService(null);
         QuantityEntity<WeightUnit> entity = new QuantityEntity<>(1.0, WeightUnit.KILOGRAM, 0.0, WeightUnit.KILOGRAM, "DIVISION");
         QuantityEntity<WeightUnit> response = service.divide(entity);
         assertTrue(response.isHasError());
