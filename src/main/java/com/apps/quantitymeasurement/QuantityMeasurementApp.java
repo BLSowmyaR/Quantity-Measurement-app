@@ -1,28 +1,12 @@
 package com.apps.quantitymeasurement;
 
 /**
- * QuantityMeasurementAppUC4 – Use Case 4: Extended Unit Support
+ * QuantityMeasurementAppUC4 – Use Case 4 & 5: Extended Unit Support and Unit Conversion
  *
  * This class extends the Quantity Measurement Application (UC3) by introducing
- * support for additional length units: yards and centimeters.
+ * support for additional length units (yards, centimeters) and unit conversion capabilities.
  *
- * <p>UC4 enhances the previous implementation by:
- * <ul>
- *   <li>Adding yard (yd) as a supported unit of length measurement</li>
- *   <li>Adding centimeter (cm) as a supported unit of length measurement</li>
- *   <li>Enabling conversion between all supported length units including feet, inches, yards, and centimeters</li>
- *   <li>Maintaining backward compatibility with existing unit conversions from UC3</li>
- * </ul>
- *
- * <p><b>Supported Units:</b>
- * <ul>
- *   <li>Feet (ft)</li>
- *   <li>Inches (in)</li>
- *   <li>Yards (yd)</li>
- *   <li>Centimeters (cm)</li>
- * </ul>
- *
- * @version 4.0
+ * @version 5.0
  * @author Development Team
  */
 public class QuantityMeasurementApp {
@@ -97,8 +81,45 @@ public class QuantityMeasurementApp {
         return demonstrateLengthEquality(length1, length2);
     }
 
-    // Main method to demonstrate extended unit support
+    /**
+     * Public static API to convert values from one unit to another.
+     * Part of UC5 Unit Conversion.
+     */
+    public static double convert(double value, Length.LengthUnit source, Length.LengthUnit target) {
+        if (source == null || target == null) {
+            throw new IllegalArgumentException("Units cannot be null");
+        }
+        if (!Double.isFinite(value)) {
+            throw new IllegalArgumentException("Value must be finite");
+        }
+        double valueInFeet = value * source.getConversionFactor();
+        return valueInFeet / target.getConversionFactor();
+    }
+
+    /**
+     * Demonstrates conversion taking raw value and source/target units.
+     */
+    public static double demonstrateLengthConversion(double value, Length.LengthUnit source, Length.LengthUnit target) {
+        double result = convert(value, source, target);
+        System.out.println("Input: convert(" + value + ", " + source + ", " + target + ") -> Output: " + result);
+        return result;
+    }
+
+    /**
+     * Demonstrates conversion taking a Length object and target unit.
+     */
+    public static Length demonstrateLengthConversion(Length length, Length.LengthUnit targetUnit) {
+        if (length == null) {
+            throw new IllegalArgumentException("Length object cannot be null");
+        }
+        Length result = length.convertTo(targetUnit);
+        System.out.println("Input: convert(Quantity(" + length.getValue() + ", " + length.getUnit() + "), " + targetUnit + ") -> Output: Quantity(" + result.getValue() + ", " + result.getUnit() + ")");
+        return result;
+    }
+
+    // Main method to demonstrate extended unit support and conversions
     public static void main(String[] args) {
+        System.out.println("=== Comparisons ===");
         // Demonstrate Feet and Inches comparison
         demonstrateLengthComparison(1.0, Length.LengthUnit.FEET,
                                     12.0, Length.LengthUnit.INCHES);
@@ -118,5 +139,17 @@ public class QuantityMeasurementApp {
         // Demonstrate Centimeters and Feet comparison
         demonstrateLengthComparison(30.48, Length.LengthUnit.CENTIMETERS,
                                     1.0, Length.LengthUnit.FEET);
+
+        System.out.println("=== Conversions ===");
+        // Demonstrate Conversions from the UC5 examples
+        demonstrateLengthConversion(1.0, Length.LengthUnit.FEET, Length.LengthUnit.INCHES);
+        demonstrateLengthConversion(3.0, Length.LengthUnit.YARDS, Length.LengthUnit.FEET);
+        demonstrateLengthConversion(36.0, Length.LengthUnit.INCHES, Length.LengthUnit.YARDS);
+        demonstrateLengthConversion(1.0, Length.LengthUnit.CENTIMETERS, Length.LengthUnit.INCHES);
+        demonstrateLengthConversion(0.0, Length.LengthUnit.FEET, Length.LengthUnit.INCHES);
+
+        // Overloaded instance method demonstration
+        Length lengthInYards = new Length(3.0, Length.LengthUnit.YARDS);
+        demonstrateLengthConversion(lengthInYards, Length.LengthUnit.FEET);
     }
 }

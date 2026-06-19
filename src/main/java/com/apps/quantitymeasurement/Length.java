@@ -29,6 +29,9 @@ public class Length {
         if (unit == null) {
             throw new IllegalArgumentException("Unit cannot be null");
         }
+        if (!Double.isFinite(value)) {
+            throw new IllegalArgumentException("Value must be finite");
+        }
         this.value = value;
         this.unit = unit;
     }
@@ -39,6 +42,19 @@ public class Length {
 
     public LengthUnit getUnit() {
         return unit;
+    }
+
+    /**
+     * Converts this length to a target unit, returning a new Length object.
+     * Part of UC5 Unit Conversion.
+     */
+    public Length convertTo(LengthUnit targetUnit) {
+        if (targetUnit == null) {
+            throw new IllegalArgumentException("Target unit cannot be null");
+        }
+        double valueInFeet = this.value * this.unit.getConversionFactor();
+        double convertedValue = valueInFeet / targetUnit.getConversionFactor();
+        return new Length(convertedValue, targetUnit);
     }
 
     /**
