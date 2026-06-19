@@ -1859,6 +1859,134 @@ public class QuantityMeasurementAppTest {
         Quantity<LengthUnit> b = new Quantity<>(12.0, LengthUnit.INCHES);
         assertTrue(a.equals(b), "UC-1 equality preserved after UC-13 refactor");
     }
+
+    // ============================================================
+    // UC-14/15: Service Layer Architecture Tests
+    // ============================================================
+
+    // --- QuantityEntity Tests ---
+
+    @Test
+    public void testQuantityEntity_CreationAndGetters() {
+        QuantityEntity<LengthUnit> entity = new QuantityEntity<>(1.0, LengthUnit.FEET, 12.0, LengthUnit.INCHES, "ADDITION");
+        assertEquals(1.0, entity.getValue1(), 1e-9);
+        assertEquals(LengthUnit.FEET, entity.getUnit1());
+        assertEquals(12.0, entity.getValue2(), 1e-9);
+        assertEquals(LengthUnit.INCHES, entity.getUnit2());
+        assertEquals("ADDITION", entity.getOperation());
+        assertFalse(entity.isHasError());
+    }
+
+    @Test
+    public void testQuantityEntity_ErrorState() {
+        QuantityEntity<VolumeUnit> entity = new QuantityEntity<>(true, "Test Error");
+        assertTrue(entity.isHasError());
+        assertEquals("Test Error", entity.getErrorMessage());
+    }
+
+    // --- QuantityMeasurementService Tests ---
+
+    @Test
+    public void testService_CompareEquality_True() {
+        QuantityMeasurementService service = new QuantityMeasurementService();
+        QuantityEntity<LengthUnit> entity = new QuantityEntity<>(1.0, LengthUnit.FEET, 12.0, LengthUnit.INCHES, "EQUALITY");
+        QuantityEntity<LengthUnit> response = service.compareEquality(entity);
+        assertFalse(response.isHasError());
+        assertTrue(response.isEquality());
+    }
+
+    @Test
+    public void testService_CompareEquality_False() {
+        QuantityMeasurementService service = new QuantityMeasurementService();
+        QuantityEntity<LengthUnit> entity = new QuantityEntity<>(1.0, LengthUnit.FEET, 1.0, LengthUnit.INCHES, "EQUALITY");
+        QuantityEntity<LengthUnit> response = service.compareEquality(entity);
+        assertFalse(response.isHasError());
+        assertFalse(response.isEquality());
+    }
+
+    @Test
+    public void testService_Convert() {
+        QuantityMeasurementService service = new QuantityMeasurementService();
+        QuantityEntity<VolumeUnit> entity = new QuantityEntity<>(1.0, VolumeUnit.LITRE, "CONVERSION", VolumeUnit.MILLILITRE);
+        QuantityEntity<VolumeUnit> response = service.convert(entity);
+        assertFalse(response.isHasError());
+        assertEquals(1000.0, response.getResultValue(), 1e-9);
+        assertEquals(VolumeUnit.MILLILITRE, response.getResultUnit());
+    }
+
+    @Test
+    public void testService_Add_ImplicitTarget() {
+        QuantityMeasurementService service = new QuantityMeasurementService();
+        QuantityEntity<WeightUnit> entity = new QuantityEntity<>(1.0, WeightUnit.KILOGRAM, 500.0, WeightUnit.GRAM, "ADDITION");
+        QuantityEntity<WeightUnit> response = service.add(entity);
+        assertFalse(response.isHasError());
+        assertEquals(1.5, response.getResultValue(), 1e-9);
+        assertEquals(WeightUnit.KILOGRAM, response.getResultUnit()); // Defaults to unit1
+    }
+
+    @Test
+    public void testService_Add_ExplicitTarget() {
+        QuantityMeasurementService service = new QuantityMeasurementService();
+        QuantityEntity<WeightUnit> entity = new QuantityEntity<>(1.0, WeightUnit.KILOGRAM, 500.0, WeightUnit.GRAM, "ADDITION");
+        entity.setResultUnit(WeightUnit.GRAM);
+        QuantityEntity<WeightUnit> response = service.add(entity);
+        assertFalse(response.isHasError());
+        assertEquals(1500.0, response.getResultValue(), 1e-9);
+        assertEquals(WeightUnit.GRAM, response.getResultUnit());
+    }
+
+    @Test
+    public void testService_Subtract() {
+        QuantityMeasurementService service = new QuantityMeasurementService();
+        QuantityEntity<LengthUnit> entity = new QuantityEntity<>(10.0, LengthUnit.FEET, 2.0, LengthUnit.FEET, "SUBTRACTION");
+        QuantityEntity<LengthUnit> response = service.subtract(entity);
+        assertFalse(response.isHasError());
+        assertEquals(8.0, response.getResultValue(), 1e-9);
+    }
+
+    @Test
+    public void testService_Divide() {
+        QuantityMeasurementService service = new QuantityMeasurementService();
+        QuantityEntity<VolumeUnit> entity = new QuantityEntity<>(10.0, VolumeUnit.LITRE, 2.0, VolumeUnit.LITRE, "DIVISION");
+        QuantityEntity<VolumeUnit> response = service.divide(entity);
+        assertFalse(response.isHasError());
+        assertEquals(5.0, response.getResultValue(), 1e-9);
+        assertNull(response.getResultUnit(), "Division should return dimensionless ratio (null unit)");
+    }
+
+    @Test
+    public void testService_ErrorHandling_NullUnit() {
+        QuantityMeasurementService service = new QuantityMeasurementService();
+        QuantityEntity<LengthUnit> entity = new QuantityEntity<>(1.0, null, 1.0, LengthUnit.FEET, "ADDITION");
+        QuantityEntity<LengthUnit> response = service.add(entity);
+        assertTrue(response.isHasError());
+        assertTrue(response.getErrorMessage().contains("IllegalArgumentException"));
+    }
+
+    @Test
+    public void testService_ErrorHandling_DivideByZero() {
+        QuantityMeasurementService service = new QuantityMeasurementService();
+        QuantityEntity<WeightUnit> entity = new QuantityEntity<>(1.0, WeightUnit.KILOGRAM, 0.0, WeightUnit.KILOGRAM, "DIVISION");
+        QuantityEntity<WeightUnit> response = service.divide(entity);
+        assertTrue(response.isHasError());
+        assertTrue(response.getErrorMessage().contains("ArithmeticException"));
+    }
+
+    // --- Controller Refactor Tests (QuantityMeasurementApp) ---
+    
+    @Test
+    public void testController_DemonstrateEquality() {
+        Quantity<LengthUnit> q1 = new Quantity<>(1.0, LengthUnit.FEET);
+        Quantity<LengthUnit> q2 = new Quantity<>(12.0, LengthUnit.INCHES);
+        assertTrue(QuantityMeasurementApp.demonstrateEquality(q1, q2));
+    }
+
+    @Test
+    public void testController_DemonstrateDivision_ThrowsArithmeticException() {
+        Quantity<LengthUnit> q1 = new Quantity<>(1.0, LengthUnit.FEET);
+        Quantity<LengthUnit> q2 = new Quantity<>(0.0, LengthUnit.FEET);
+        assertThrows(ArithmeticException.class, () -> QuantityMeasurementApp.demonstrateDivision(q1, q2));
+    }
 }
 
 

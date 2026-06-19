@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.287" tests="242" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.354" tests="255" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="25"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -15,7 +15,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="IN"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-25.0.2\bin"/>
-    <property name="sun.java.command" value="C:\Users\Rishi Babu\AppData\Local\Temp\surefire11162025332082433159\surefirebooter-20260619160108315_3.jar C:\Users\Rishi Babu\AppData\Local\Temp\surefire11162025332082433159 2026-06-19T16-01-08_159-jvmRun1 surefire-20260619160108315_1tmp surefire_0-20260619160108315_2tmp"/>
+    <property name="sun.java.command" value="C:\Users\Rishi Babu\AppData\Local\Temp\surefire7250782650436874450\surefirebooter-20260619161033227_3.jar C:\Users\Rishi Babu\AppData\Local\Temp\surefire7250782650436874450 2026-06-19T16-10-33_085-jvmRun1 surefire-20260619161033227_1tmp surefire_0-20260619161033227_2tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="C:\Users\Rishi Babu\Desktop\BridgeLabz\App-Mentor-Progress-Record-June2026\Feet-measurement-equality\target\test-classes;C:\Users\Rishi Babu\Desktop\BridgeLabz\App-Mentor-Progress-Record-June2026\Feet-measurement-equality\target\classes;C:\Users\Rishi Babu\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.10.1\junit-jupiter-api-5.10.1.jar;C:\Users\Rishi Babu\.m2\repository\org\opentest4j\opentest4j\1.3.0\opentest4j-1.3.0.jar;C:\Users\Rishi Babu\.m2\repository\org\junit\platform\junit-platform-commons\1.10.1\junit-platform-commons-1.10.1.jar;C:\Users\Rishi Babu\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\Rishi Babu\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.10.1\junit-jupiter-engine-5.10.1.jar;C:\Users\Rishi Babu\.m2\repository\org\junit\platform\junit-platform-engine\1.10.1\junit-platform-engine-1.10.1.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -30,7 +30,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\Rishi Babu\AppData\Local\Temp\surefire11162025332082433159\surefirebooter-20260619160108315_3.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\Rishi Babu\AppData\Local\Temp\surefire7250782650436874450\surefirebooter-20260619161033227_3.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="25.0.2+10-LTS-69"/>
@@ -59,73 +59,79 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="69.0"/>
   </properties>
-  <testcase name="testEquality_GramToKilogram_EquivalentValue" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.034"/>
-  <testcase name="testConversion_LitreToMillilitre" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.002"/>
-  <testcase name="testConvertFromBaseUnit_LitreToLitre" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
+  <testcase name="testEquality_GramToKilogram_EquivalentValue" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.048"/>
+  <testcase name="testConversion_LitreToMillilitre" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.005"/>
+  <testcase name="testConvertFromBaseUnit_LitreToLitre" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.003"/>
   <testcase name="centimeterEquals39Point3701Inches" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.002"/>
-  <testcase name="testAddition_ExplicitTargetUnit_SameAsFirstOperand" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.005"/>
-  <testcase name="testEquality_YardToFeet_NonEquivalentValue" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.002"/>
-  <testcase name="testDivision_WithSmallRatio" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
-  <testcase name="testGenericQuantity_WeightOperations_Conversion" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
+  <testcase name="testAddition_ExplicitTargetUnit_SameAsFirstOperand" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.003"/>
+  <testcase name="testEquality_YardToFeet_NonEquivalentValue" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
+  <testcase name="testDivision_WithSmallRatio" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
+  <testcase name="testGenericQuantity_WeightOperations_Conversion" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.002"/>
   <testcase name="testConversion_PoundToKilogram" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
-  <testcase name="testLengthUnitEnum_YardsConstant" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.002"/>
+  <testcase name="testLengthUnitEnum_YardsConstant" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
   <testcase name="testArithmeticOperation_ADD_Compute" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
-  <testcase name="testConvertFromBaseUnit_LitreToGallon" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
-  <testcase name="testFeetInchesComparison" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
-  <testcase name="testEquality_Volume_ZeroValue" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
-  <testcase name="testEquality_FeetToYard_EquivalentValue" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
-  <testcase name="testInchesInequality" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.002"/>
-  <testcase name="testAddition_ExplicitTargetUnit_Feet" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
+  <testcase name="testConvertFromBaseUnit_LitreToGallon" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
+  <testcase name="testService_CompareEquality_False" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.002"/>
+  <testcase name="testFeetInchesComparison" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
+  <testcase name="testEquality_Volume_ZeroValue" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
+  <testcase name="testEquality_FeetToYard_EquivalentValue" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
+  <testcase name="testInchesInequality" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
+  <testcase name="testAddition_ExplicitTargetUnit_Feet" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
   <testcase name="differentValuesSameUnitNotEqual" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
-  <testcase name="testSubtraction_ExplicitTargetUnit_Feet" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
-  <testcase name="testSubtraction_AllMeasurementCategories" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
+  <testcase name="testSubtraction_ExplicitTargetUnit_Feet" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
+  <testcase name="testSubtraction_AllMeasurementCategories" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
   <testcase name="testArithmeticOperation_SUBTRACT_Compute" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
-  <testcase name="testConvertToBaseUnit_MillilitreToLitre" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
-  <testcase name="testConvertToBaseUnit_FeetToFeet" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
+  <testcase name="testConvertToBaseUnit_MillilitreToLitre" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
+  <testcase name="testConvertToBaseUnit_FeetToFeet" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
   <testcase name="crossUnitEqualityDemonstrateMethod" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.005">
-    <system-out><![CDATA[Input: Quantity(1.0, YARDS) and Quantity(3.0, FEET)
-Output: Equal (true)
+    <system-out><![CDATA[Compare: Quantity(1.0, YARDS) and Quantity(3.0, FEET) => Equal
 
 ]]></system-out>
   </testcase>
-  <testcase name="testDivision_SameUnit_LitreDividedByLitre" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
-  <testcase name="testAddition_ExplicitTargetUnit_SmallToLargeScale" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
+  <testcase name="testController_DemonstrateEquality" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0">
+    <system-out><![CDATA[Compare: Quantity(1.0, FEET) and Quantity(12.0, INCHES) => Equal
+
+]]></system-out>
+  </testcase>
+  <testcase name="testDivision_SameUnit_LitreDividedByLitre" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
+  <testcase name="testAddition_ExplicitTargetUnit_SmallToLargeScale" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.002"/>
   <testcase name="testEquality_Volume_NegativeVolume" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
   <testcase name="testSubtraction_WithNegativeValues" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
-  <testcase name="testConversion_PrecisionTolerance" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
-  <testcase name="testRefactor_WeightSubtract_WorksCorrectly" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.002"/>
+  <testcase name="testConversion_PrecisionTolerance" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
+  <testcase name="testRefactor_WeightSubtract_WorksCorrectly" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
   <testcase name="testAddition_ExplicitTargetUnit_Commutativity" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
   <testcase name="testEquality_InchToInch_SameValue" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
-  <testcase name="testAddition_ExplicitTargetUnit_NullTargetUnit" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.003"/>
+  <testcase name="testAddition_ExplicitTargetUnit_NullTargetUnit" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.004"/>
   <testcase name="testEquality_AllUnits_ComplexScenario" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
   <testcase name="testSubtraction_NullTargetUnit" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
-  <testcase name="testEquality_CentimetersNullComparison" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
-  <testcase name="testEquality_FeetToFeet_DifferentValue" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
+  <testcase name="testEquality_CentimetersNullComparison" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.002"/>
+  <testcase name="testEquality_FeetToFeet_DifferentValue" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
   <testcase name="testAddition_CommutativityWeight" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
-  <testcase name="testArithmeticOperation_SUBTRACT_LargeValues" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
-  <testcase name="testSubtraction_NullOperand" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
-  <testcase name="testAddition_ExplicitTargetUnit_LargeToSmallScale" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
+  <testcase name="testArithmeticOperation_SUBTRACT_LargeValues" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
+  <testcase name="testSubtraction_NullOperand" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.003"/>
+  <testcase name="testAddition_ExplicitTargetUnit_LargeToSmallScale" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
   <testcase name="testArithmeticOperation_SUBTRACT_WithNegatives" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
-  <testcase name="testArithmeticOperation_SUBTRACT_SameValues" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
-  <testcase name="testAddition_Volume_CrossUnit_GallonPlusLitre" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
+  <testcase name="testArithmeticOperation_SUBTRACT_SameValues" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
+  <testcase name="testAddition_Volume_CrossUnit_GallonPlusLitre" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
   <testcase name="testAddition_Volume_ExplicitTargetUnit_Millilitre" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
-  <testcase name="testEquality_ZeroValueWeight" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
+  <testcase name="testEquality_ZeroValueWeight" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
   <testcase name="testSubtraction_WithZeroOperand" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
-  <testcase name="testArithmeticOperation_DIVIDE_UnitRatio" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
-  <testcase name="testRefactor_Subtract_WorksCorrectly" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
-  <testcase name="testConversion_InvalidUnit_Throws" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.002"/>
-  <testcase name="testSubtraction_CrossUnit_FeetMinusInches" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.002"/>
+  <testcase name="testArithmeticOperation_DIVIDE_UnitRatio" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
+  <testcase name="testRefactor_Subtract_WorksCorrectly" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
+  <testcase name="testConversion_InvalidUnit_Throws" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
+  <testcase name="testSubtraction_CrossUnit_FeetMinusInches" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
   <testcase name="testDivision_RatioEqualToOne" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
   <testcase name="testAddition_NullSecondOperand" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
   <testcase name="testDivision_WithLargeRatio" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
   <testcase name="testConversion_Volume_ZeroValue" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
-  <testcase name="testGenericQuantity_ConstructorValidation_NullUnit" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
+  <testcase name="testGenericQuantity_ConstructorValidation_NullUnit" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.002"/>
+  <testcase name="testService_Subtract" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
   <testcase name="testConversion_ZeroValue" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
   <testcase name="testArithmeticOperation_EnumOrdering" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
-  <testcase name="testSubtractionAddition_Inverse" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
-  <testcase name="testSubtraction_ResultingInZero" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
+  <testcase name="testSubtractionAddition_Inverse" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
+  <testcase name="testSubtraction_ResultingInZero" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
   <testcase name="testSubtraction_ExplicitTargetUnit_Inches" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
-  <testcase name="testFeetEquality" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
+  <testcase name="testFeetEquality" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
   <testcase name="testAddition_ExplicitTargetUnit_PrecisionTolerance" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
   <testcase name="testEquality_Volume_LitreToMillilitre" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
   <testcase name="testConversion_GallonToLitre" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
@@ -133,177 +139,187 @@ Output: Equal (true)
   <testcase name="testEquality_CentimetersSameReference" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
   <testcase name="testScalability_VolumeIntegration" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
   <testcase name="testConversion_FeatToYard" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
-  <testcase name="testVolumeUnitEnum_GallonConstant" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
-  <testcase name="testRefactor_ExplicitTargetUnit_Preserved" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
-  <testcase name="testVolumeUnitEnum_MillilitreConstant" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
+  <testcase name="testVolumeUnitEnum_GallonConstant" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
+  <testcase name="testRefactor_ExplicitTargetUnit_Preserved" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
+  <testcase name="testVolumeUnitEnum_MillilitreConstant" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
   <testcase name="testEquality_KilogramToGram_EquivalentValue" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
-  <testcase name="testEquality_Volume_NotEqual" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
-  <testcase name="testFeetInequality" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
-  <testcase name="testEquality_NullUnit" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
-  <testcase name="testArithmeticOperation_ADD_WithZero" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
+  <testcase name="testEquality_Volume_NotEqual" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
+  <testcase name="testFeetInequality" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
+  <testcase name="testEquality_NullUnit" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.002"/>
+  <testcase name="testArithmeticOperation_ADD_WithZero" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
   <testcase name="testEquality_YardWithNullUnit" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
-  <testcase name="testDivision_Immutability" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
-  <testcase name="testEquality_YardToInches_EquivalentValue" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
-  <testcase name="testDivision_CrossUnit_InchesDividedByFeet" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
-  <testcase name="testAddition_CrossUnit_PoundPlusKilogram" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
-  <testcase name="testGenericQuantity_LengthOperations_Conversion" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.002"/>
-  <testcase name="testConversion_NegativeValue" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
+  <testcase name="testDivision_Immutability" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
+  <testcase name="testEquality_YardToInches_EquivalentValue" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
+  <testcase name="testDivision_CrossUnit_InchesDividedByFeet" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
+  <testcase name="testAddition_CrossUnit_PoundPlusKilogram" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
+  <testcase name="testGenericQuantity_LengthOperations_Conversion" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
+  <testcase name="testConversion_NegativeValue" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
   <testcase name="testArithmeticOperation_ADD_WithNegatives" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
-  <testcase name="testAddition_ExplicitTargetUnit_WithZero" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
+  <testcase name="testAddition_ExplicitTargetUnit_WithZero" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
   <testcase name="testInchesEquality_SameReference" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
-  <testcase name="testFeetEquality_SameReference" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
+  <testcase name="testController_DemonstrateDivision_ThrowsArithmeticException" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.002"/>
+  <testcase name="testFeetEquality_SameReference" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.002"/>
   <testcase name="testConvertFromBaseUnit_FeetToCentimeters" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
-  <testcase name="testEquality_InchToFeet_EquivalentValue" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
-  <testcase name="testEquality_Volume_GallonToLitre" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
-  <testcase name="testRefactor_VolumeAdd_WorksCorrectly" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
+  <testcase name="testEquality_InchToFeet_EquivalentValue" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
+  <testcase name="testService_CompareEquality_True" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
+  <testcase name="testEquality_Volume_GallonToLitre" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
+  <testcase name="testRefactor_VolumeAdd_WorksCorrectly" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
   <testcase name="testAddition_SameUnit_InchPlusInch" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
   <testcase name="testEquality_YardToFeet_EquivalentValue" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
-  <testcase name="yardNotEqualToInches" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
-  <testcase name="testConversion_KilogramToPound" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
+  <testcase name="yardNotEqualToInches" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
+  <testcase name="testConversion_KilogramToPound" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
   <testcase name="testEquality_CentimetersWithNullUnit" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
-  <testcase name="testAddition_ExplicitTargetUnit_Centimeters" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
+  <testcase name="testQuantityEntity_ErrorState" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
+  <testcase name="testAddition_ExplicitTargetUnit_Centimeters" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
   <testcase name="testRefactor_Add_WorksCorrectly" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
   <testcase name="testEquality_LargeWeightValue" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
-  <testcase name="testConvertToBaseUnit_YardsToFeet" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
+  <testcase name="testConvertToBaseUnit_YardsToFeet" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
   <testcase name="testAddition_NegativeValuesWeight" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
-  <testcase name="testAddition_CrossUnit_FeetPlusInches" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
+  <testcase name="testAddition_CrossUnit_FeetPlusInches" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
   <testcase name="testConversion_RoundTrip_PreservesValue" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
   <testcase name="testDivision_ByZero" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
-  <testcase name="testGenericQuantity_LengthOperations_Equality" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
-  <testcase name="testInchesEquality_DifferentClass" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
-  <testcase name="testAddition_Volume_WithZero" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
+  <testcase name="testGenericQuantity_LengthOperations_Equality" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
+  <testcase name="testInchesEquality_DifferentClass" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
+  <testcase name="testAddition_Volume_WithZero" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
   <testcase name="testInchesEquality_DifferentValue" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
-  <testcase name="testDivision_AllMeasurementCategories" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
-  <testcase name="testAddition_ExplicitTargetUnit_Kilogram" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
-  <testcase name="reflexiveSymmetricAndTransitiveProperty" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
+  <testcase name="testDivision_AllMeasurementCategories" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
+  <testcase name="testAddition_ExplicitTargetUnit_Kilogram" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
+  <testcase name="reflexiveSymmetricAndTransitiveProperty" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
   <testcase name="testAddition_NegativeValues" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
   <testcase name="testEquality_KilogramToKilogram_SameValue" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
   <testcase name="testConvertFromBaseUnit_LitreToMillilitre" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
   <testcase name="testSubtraction_NonCommutative" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
-  <testcase name="testInchesEquality_NullComparison" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
-  <testcase name="testEquality_InchesToYard_EquivalentValue" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
-  <testcase name="testDivision_CrossUnit_KilogramDividedByGram" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
-  <testcase name="testAddition_Volume_CrossUnit_LitrePlusMillilitre" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
-  <testcase name="testCrossUnitInequality" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
-  <testcase name="testEquality_YardSameReference" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
+  <testcase name="testInchesEquality_NullComparison" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
+  <testcase name="testEquality_InchesToYard_EquivalentValue" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
+  <testcase name="testDivision_CrossUnit_KilogramDividedByGram" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
+  <testcase name="testAddition_Volume_CrossUnit_LitrePlusMillilitre" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.002"/>
+  <testcase name="testCrossUnitInequality" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
+  <testcase name="testEquality_YardSameReference" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
+  <testcase name="testService_Divide" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
   <testcase name="testAddition_Commutativity" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
   <testcase name="testEquality_NullUnitWeight" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
   <testcase name="testCrossCategoryPrevention_LengthVsWeight" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
-  <testcase name="testGenericQuantity_WeightOperations_Addition" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
+  <testcase name="testGenericQuantity_WeightOperations_Addition" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
   <testcase name="testConvertToBaseUnit_LitreToLitre" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
   <testcase name="testEquality_Volume_LargeValues" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
-  <testcase name="testAddition_Volume_CrossUnit_MillilitrePlusLitre" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
+  <testcase name="testAddition_Volume_CrossUnit_MillilitrePlusLitre" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
   <testcase name="testDivision_NonCommutative" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
   <testcase name="testAddition_SameUnit_KilogramPlusKilogram" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
-  <testcase name="testEquality_FeetToFeet_SameValue" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
+  <testcase name="testEquality_FeetToFeet_SameValue" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
   <testcase name="testAddition_LargeValues" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
   <testcase name="testConversion_LitreToGallon" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
-  <testcase name="testConvertToBaseUnit_InchesToFeet" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
-  <testcase name="testArithmeticOperation_ADD_LargeValues" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
-  <testcase name="testAddition_CrossUnit_YardPlusFeet" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
+  <testcase name="testConvertToBaseUnit_InchesToFeet" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
+  <testcase name="testArithmeticOperation_ADD_LargeValues" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
+  <testcase name="testAddition_CrossUnit_YardPlusFeet" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
   <testcase name="testEquality_YardToYard_SameValue" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
   <testcase name="testConversion_ZeroValueWeight" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
   <testcase name="testConversion_SameUnitWeight" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
-  <testcase name="testConvertFromBaseUnit_FeetToFeet" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
+  <testcase name="testConvertFromBaseUnit_FeetToFeet" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
   <testcase name="testEquality_TransitivePropertyWeight" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
+  <testcase name="testQuantityEntity_CreationAndGetters" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
   <testcase name="testEquality_YardToYard_DifferentValue" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
-  <testcase name="testConvertFromBaseUnit_FeetToYards" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
-  <testcase name="testDivision_RatioGreaterThanOne" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
-  <testcase name="testSubtraction_ExplicitTargetUnit_Millilitre" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
+  <testcase name="testService_ErrorHandling_DivideByZero" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
+  <testcase name="testConvertFromBaseUnit_FeetToYards" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
+  <testcase name="testDivision_RatioGreaterThanOne" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
+  <testcase name="testSubtraction_ExplicitTargetUnit_Millilitre" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
   <testcase name="testIMeasurableInterface_WeightUnitImplementation" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
   <testcase name="testFeetEquality_DifferentClass" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
-  <testcase name="testFeetEquality_DifferentValue" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
+  <testcase name="testFeetEquality_DifferentValue" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
   <testcase name="testAddition_ExplicitTargetUnit_Inches" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
   <testcase name="testArithmeticOperation_DIVIDE_Compute" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
-  <testcase name="testAddition_Volume_SameUnit_LitrePlusLitre" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
-  <testcase name="testConversion_FeetToInches" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
-  <testcase name="testIMeasurableInterface_LengthUnitImplementation" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
-  <testcase name="testEquals_GenericQuantity_ContractPreservation" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
-  <testcase name="testMultipleFeetComparison" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
+  <testcase name="testAddition_Volume_SameUnit_LitrePlusLitre" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
+  <testcase name="testConversion_FeetToInches" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
+  <testcase name="testIMeasurableInterface_LengthUnitImplementation" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
+  <testcase name="testEquals_GenericQuantity_ContractPreservation" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
+  <testcase name="testMultipleFeetComparison" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
   <testcase name="testEquality_MultiUnit_TransitiveProperty" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
-  <testcase name="testDivision_NullOperand" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
+  <testcase name="testService_Add_ExplicitTarget" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
+  <testcase name="testDivision_NullOperand" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
   <testcase name="testAddition_CrossUnit_CentimeterPlusInch" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
-  <testcase name="testFeetEquality_NullComparison" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
-  <testcase name="testInchesEquality_SameValue" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
+  <testcase name="testFeetEquality_NullComparison" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
+  <testcase name="testInchesEquality_SameValue" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
   <testcase name="testSubtraction_SameUnit_FeetMinusFeet" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
   <testcase name="testSubtraction_Immutability" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
   <testcase name="testAddition_CrossUnit_InchPlusFeet" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
   <testcase name="testEquality_SmallWeightValue" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
-  <testcase name="testDivision_RatioLessThanOne" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
-  <testcase name="testEquality_Volume_SmallValues" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
+  <testcase name="testDivision_RatioLessThanOne" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
+  <testcase name="testEquality_Volume_SmallValues" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
   <testcase name="yardEquals36Inches" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
-  <testcase name="testFeetEquality_SameValue" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
+  <testcase name="testFeetEquality_SameValue" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
   <testcase name="testAddition_CrossUnit_KilogramPlusGram" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
   <testcase name="testAddition_SmallValues" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
   <testcase name="testEquality_WeightVsLength_Incompatible" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
   <testcase name="testEquality_YardNullComparison" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
   <testcase name="testAddition_ExplicitTargetUnit_AllUnitCombinations" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
-  <testcase name="testVolumeUnitEnum_LitreConstant" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
+  <testcase name="testVolumeUnitEnum_LitreConstant" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
   <testcase name="testAddition_LargeValuesWeight" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
   <testcase name="testArithmeticOperation_DIVIDE_ThrowsArithmeticException" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
-  <testcase name="testEquality_DifferentClass" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
-  <testcase name="testAddition_ExplicitTargetUnit_Yards" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
+  <testcase name="testEquality_DifferentClass" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
+  <testcase name="testAddition_ExplicitTargetUnit_Yards" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
   <testcase name="testArithmeticOperation_AllConstants_EnumValues" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
-  <testcase name="testConversion_InchesToYards" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
+  <testcase name="testConversion_InchesToYards" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
   <testcase name="testEquality_SameReference" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
-  <testcase name="testAddition_Volume_LargeValues" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
+  <testcase name="testAddition_Volume_LargeValues" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
   <testcase name="testSubtraction_SameUnit_LitreMinusLitre" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
   <testcase name="testLengthUnitEnum_CentimetersConstant" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
   <testcase name="testEquality_NullComparisonWeight" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
   <testcase name="testEquality_NullComparison" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
-  <testcase name="testEquality_Volume_LitreToLitre" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.002"/>
+  <testcase name="testEquality_Volume_LitreToLitre" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
   <testcase name="testEquality_SameReferenceWeight" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
   <testcase name="thirtyPoint48CmEqualsOneFoot" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
   <testcase name="testAddition_Volume_ExplicitTargetUnit_Litre" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
   <testcase name="testSubtraction_LargeValues" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
-  <testcase name="testAddition_Volume_NegativeValues" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
+  <testcase name="testAddition_Volume_NegativeValues" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
   <testcase name="testConversion_Volume_SameUnit" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
-  <testcase name="testDivision_SameUnit_FeetDividedByFeet" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
+  <testcase name="testDivision_SameUnit_FeetDividedByFeet" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.002"/>
   <testcase name="testEquality_FeetToInch_EquivalentValue" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
   <testcase name="testSubtraction_CrossUnit_InchesMinusFeet" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
-  <testcase name="testConvertFromBaseUnit_FeetToInches" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
+  <testcase name="testConvertFromBaseUnit_FeetToInches" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
   <testcase name="testConvertToBaseUnit_GallonToLitre" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
   <testcase name="testSubtractionAndDivision_Integration" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
   <testcase name="testEquality_InchToInch_DifferentValue" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
   <testcase name="testSubtraction_ResultingInNegative" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
   <testcase name="testLengthUnitEnum_InchesConstant" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
-  <testcase name="testConversion_MillilitreToGallon" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
-  <testcase name="equalsReturnsFalseForNull" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
+  <testcase name="testConversion_MillilitreToGallon" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
+  <testcase name="equalsReturnsFalseForNull" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
   <testcase name="referenceEqualitySameObject" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
   <testcase name="testConversion_MillilitreToLitre" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
   <testcase name="testRefactor_BackwardCompatibility_LegacyEquality" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
-  <testcase name="threeFeetEqualsOneYard" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
-  <testcase name="testConvertToBaseUnit_CentimetersToFeet" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.002"/>
+  <testcase name="threeFeetEqualsOneYard" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
+  <testcase name="testConvertToBaseUnit_CentimetersToFeet" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
   <testcase name="testConversion_InchesToFeet" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
   <testcase name="testAddition_Volume_SmallValues" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
-  <testcase name="testEquality_NegativeWeight" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
+  <testcase name="testService_ErrorHandling_NullUnit" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
+  <testcase name="testEquality_NegativeWeight" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
   <testcase name="testGenericQuantity_VolumeOperations_Consistency" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
   <testcase name="testGenericQuantity_ConstructorValidation_InvalidValue" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
   <testcase name="testAddition_WithZeroWeight" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
-  <testcase name="testSubtraction_SmallValues" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
-  <testcase name="testAddition_SameUnit_FeetPlusFeet" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
+  <testcase name="testService_Convert" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
+  <testcase name="testService_Add_ImplicitTarget" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
+  <testcase name="testSubtraction_SmallValues" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
+  <testcase name="testAddition_SameUnit_FeetPlusFeet" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
   <testcase name="testEquality_centimetersToInches_EquivalentValue" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
-  <testcase name="testGenericQuantity_WeightOperations_Equality" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
+  <testcase name="testGenericQuantity_WeightOperations_Equality" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
   <testcase name="testAddition_Volume_ExplicitTargetUnit_Gallon" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
-  <testcase name="testHashCode_GenericQuantity_Consistency" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
-  <testcase name="testRefactor_Divide_WorksCorrectly" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
+  <testcase name="testHashCode_GenericQuantity_Consistency" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
+  <testcase name="testRefactor_Divide_WorksCorrectly" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
   <testcase name="testArithmeticOperation_DIVIDE_ThrowsForNearZero" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
   <testcase name="testAddition_Volume_SameUnit_MillilitrePlusMillilitre" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
   <testcase name="testInchesEquality" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
-  <testcase name="testEquality_centimetersToFeet_NonEquivalentValue" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
-  <testcase name="testConversion_CentimetersToInches" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
-  <testcase name="testConversion_Volume_NegativeValue" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
-  <testcase name="testAddition_ExplicitTargetUnit_NegativeValues" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
-  <testcase name="testAddition_ExplicitTargetUnit_SameAsSecondOperand" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
-  <testcase name="testConversion_RoundTripWeight" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
-  <testcase name="testConversion_NaNOrInfinite_Throws" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
-  <testcase name="testAddition_WithZero" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
+  <testcase name="testEquality_centimetersToFeet_NonEquivalentValue" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
+  <testcase name="testConversion_CentimetersToInches" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
+  <testcase name="testConversion_Volume_NegativeValue" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
+  <testcase name="testAddition_ExplicitTargetUnit_NegativeValues" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
+  <testcase name="testAddition_ExplicitTargetUnit_SameAsSecondOperand" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
+  <testcase name="testConversion_RoundTripWeight" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
+  <testcase name="testConversion_NaNOrInfinite_Throws" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.002"/>
+  <testcase name="testAddition_WithZero" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.002"/>
   <testcase name="testSubtraction_Chaining" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
-  <testcase name="testConversion_NegativeValueWeight" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
-  <testcase name="testLengthUnitEnum_FeetConstant" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
-  <testcase name="testGenericQuantity_LengthOperations_Addition" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
-  <testcase name="testEquality_KilogramToKilogram_DifferentValue" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
-  <testcase name="testArithmeticOperation_DIVIDE_SmallRatio" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
-  <testcase name="testConversion_YardsToInches" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.002"/>
-  <testcase name="testRefactor_VolumeDivide_WorksCorrectly" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.0"/>
+  <testcase name="testConversion_NegativeValueWeight" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.002"/>
+  <testcase name="testLengthUnitEnum_FeetConstant" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.002"/>
+  <testcase name="testGenericQuantity_LengthOperations_Addition" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
+  <testcase name="testEquality_KilogramToKilogram_DifferentValue" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.002"/>
+  <testcase name="testArithmeticOperation_DIVIDE_SmallRatio" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
+  <testcase name="testConversion_YardsToInches" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.001"/>
+  <testcase name="testRefactor_VolumeDivide_WorksCorrectly" classname="com.apps.quantitymeasurement.QuantityMeasurementAppTest" time="0.002"/>
 </testsuite>

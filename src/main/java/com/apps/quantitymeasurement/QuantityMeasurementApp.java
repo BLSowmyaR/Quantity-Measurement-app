@@ -58,84 +58,108 @@ public class QuantityMeasurementApp {
         }
     }
 
-    // --- UC10 Generic Demonstration Methods ---
+    // --- UC14: Service Layer Refactoring ---
+    // Controller layer instantiates the service to handle business logic
+    private static final QuantityMeasurementService service = new QuantityMeasurementService();
 
     /**
-     * Demonstrates equality check on any two Quantity objects.
+     * Demonstrates equality check using the service layer.
      */
+    @SuppressWarnings({"unchecked", "rawtypes"})
     public static boolean demonstrateEquality(Quantity<?> q1, Quantity<?> q2) {
-        boolean isEqual = q1.equals(q2);
-        System.out.println("Input: Quantity(" + q1.getValue() + ", " + q1.getUnit() + ") and Quantity("
-                + q2.getValue() + ", " + q2.getUnit() + ")");
-        System.out.println("Output: Equal (" + isEqual + ")");
+        QuantityEntity request = new QuantityEntity();
+        request.setValue1(q1.getValue());
+        request.setUnit1((IMeasurable) q1.getUnit());
+        request.setValue2(q2.getValue());
+        request.setUnit2((IMeasurable) q2.getUnit());
+        request.setOperation("EQUALITY");
+        
+        QuantityEntity response = service.compareEquality(request);
+        
+        if (response.isHasError()) {
+            System.out.println(response.toString());
+            return false;
+        }
+        System.out.println(response.toString());
         System.out.println();
-        return isEqual;
+        return response.isEquality();
     }
 
     /**
-     * Demonstrates unit conversion for any Quantity object.
+     * Demonstrates unit conversion using the service layer.
      */
     public static <U extends IMeasurable> Quantity<U> demonstrateConversion(Quantity<U> quantity, U targetUnit) {
         if (quantity == null) {
             throw new IllegalArgumentException("Quantity object cannot be null");
         }
-        Quantity<U> result = quantity.convertTo(targetUnit);
-        System.out.println("Input: convert(Quantity(" + quantity.getValue() + ", " + quantity.getUnit() + "), " + targetUnit
-                + ") -> Output: Quantity(" + formatValue(result.getValue()) + ", " + result.getUnit() + ")");
-        return result;
+        QuantityEntity<U> request = new QuantityEntity<>(quantity.getValue(), quantity.getUnit(), "CONVERSION", targetUnit);
+        QuantityEntity<U> response = service.convert(request);
+        
+        if (response.isHasError()) throw new RuntimeException(response.getErrorMessage());
+        
+        System.out.println(response.toString());
+        return new Quantity<>(response.getResultValue(), response.getResultUnit());
     }
 
     /**
-     * Demonstrates addition with implicit target unit.
+     * Demonstrates addition using the service layer.
      */
     public static <U extends IMeasurable> Quantity<U> demonstrateAddition(Quantity<U> q1, Quantity<U> q2) {
-        Quantity<U> result = q1.add(q2);
-        System.out.println("Input: add(Quantity(" + formatValue(q1.getValue()) + ", " + q1.getUnit() + "), Quantity(" + formatValue(q2.getValue()) + ", " + q2.getUnit() + "))");
-        System.out.println("Output: Quantity(" + formatValue(result.getValue()) + ", " + result.getUnit() + ")");
-        return result;
+        QuantityEntity<U> request = new QuantityEntity<>(q1.getValue(), q1.getUnit(), q2.getValue(), q2.getUnit(), "ADDITION");
+        QuantityEntity<U> response = service.add(request);
+        if (response.isHasError()) throw new RuntimeException(response.getErrorMessage());
+        System.out.println(response.toString());
+        return new Quantity<>(response.getResultValue(), response.getResultUnit());
     }
 
     /**
-     * Demonstrates subtraction with implicit target unit.
+     * Demonstrates subtraction using the service layer.
      */
     public static <U extends IMeasurable> Quantity<U> demonstrateSubtraction(Quantity<U> q1, Quantity<U> q2) {
-        Quantity<U> result = q1.subtract(q2);
-        System.out.println("Input: subtract(Quantity(" + formatValue(q1.getValue()) + ", " + q1.getUnit() + "), Quantity(" + formatValue(q2.getValue()) + ", " + q2.getUnit() + "))");
-        System.out.println("Output: Quantity(" + formatValue(result.getValue()) + ", " + result.getUnit() + ")");
-        return result;
+        QuantityEntity<U> request = new QuantityEntity<>(q1.getValue(), q1.getUnit(), q2.getValue(), q2.getUnit(), "SUBTRACTION");
+        QuantityEntity<U> response = service.subtract(request);
+        if (response.isHasError()) throw new RuntimeException(response.getErrorMessage());
+        System.out.println(response.toString());
+        return new Quantity<>(response.getResultValue(), response.getResultUnit());
     }
 
     /**
      * Demonstrates subtraction with explicitly specified target unit.
      */
     public static <U extends IMeasurable> Quantity<U> demonstrateSubtraction(Quantity<U> q1, Quantity<U> q2, U targetUnit) {
-        Quantity<U> result = q1.subtract(q2, targetUnit);
-        System.out.println("Input: subtract(Quantity(" + formatValue(q1.getValue()) + ", " + q1.getUnit() + "), Quantity(" + formatValue(q2.getValue()) + ", " + q2.getUnit() + "), " + targetUnit + ")");
-        System.out.println("Output: Quantity(" + formatValue(result.getValue()) + ", " + result.getUnit() + ")");
-        return result;
+        QuantityEntity<U> request = new QuantityEntity<>(q1.getValue(), q1.getUnit(), q2.getValue(), q2.getUnit(), "SUBTRACTION");
+        request.setResultUnit(targetUnit);
+        QuantityEntity<U> response = service.subtract(request);
+        if (response.isHasError()) throw new RuntimeException(response.getErrorMessage());
+        System.out.println(response.toString());
+        return new Quantity<>(response.getResultValue(), response.getResultUnit());
     }
 
     /**
-     * Demonstrates division returning a dimensionless ratio.
+     * Demonstrates division using the service layer.
      */
     public static <U extends IMeasurable> double demonstrateDivision(Quantity<U> q1, Quantity<U> q2) {
-        double result = q1.divide(q2);
-        System.out.println("Input: divide(Quantity(" + formatValue(q1.getValue()) + ", " + q1.getUnit() + "), Quantity(" + formatValue(q2.getValue()) + ", " + q2.getUnit() + "))");
-        System.out.println("Output: " + result);
-        return result;
+        QuantityEntity<U> request = new QuantityEntity<>(q1.getValue(), q1.getUnit(), q2.getValue(), q2.getUnit(), "DIVISION");
+        QuantityEntity<U> response = service.divide(request);
+        if (response.isHasError()) {
+            if (response.getErrorMessage().contains("ArithmeticException")) throw new ArithmeticException(response.getErrorMessage());
+            throw new RuntimeException(response.getErrorMessage());
+        }
+        System.out.println(response.toString());
+        return response.getResultValue();
     }
 
     /**
      * Demonstrates addition with explicitly specified target unit.
      */
     public static <U extends IMeasurable> Quantity<U> demonstrateAddition(Quantity<U> q1, Quantity<U> q2, U targetUnit) {
-        Quantity<U> result = q1.add(q2, targetUnit);
-        System.out.println("Input: add(Quantity(" + formatValue(q1.getValue()) + ", " + q1.getUnit() + "), " +
-                           "Quantity(" + formatValue(q2.getValue()) + ", " + q2.getUnit() + "), " +
-                           targetUnit + ")");
-        System.out.println("Output: Quantity(" + formatValue(result.getValue()) + ", " + result.getUnit() + ")");
+        QuantityEntity<U> request = new QuantityEntity<>(q1.getValue(), q1.getUnit(), q2.getValue(), q2.getUnit(), "ADDITION");
+        request.setResultUnit(targetUnit);
+        QuantityEntity<U> response = service.add(request);
+        if (response.isHasError()) throw new RuntimeException(response.getErrorMessage());
+        System.out.println(response.toString());
         System.out.println();
-        return result;
+        return new Quantity<>(response.getResultValue(), response.getResultUnit());
     }
 
     // --- Legacy / Compatibility Methods (delegates to Generic system) ---
