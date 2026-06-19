@@ -66,6 +66,54 @@ public class Quantity<U extends IMeasurable> {
     }
 
     /**
+     * Subtracts other from this measurement, with the target unit being this operand's unit.
+     * Part of UC12: Subtraction and Division Operations.
+     */
+    public Quantity<U> subtract(Quantity<U> other) {
+        if (other == null) {
+            throw new IllegalArgumentException("Operand cannot be null");
+        }
+        return subtract(other, this.unit);
+    }
+
+    /**
+     * Subtracts other from this measurement and converts the result to targetUnit.
+     * Part of UC12: Subtraction and Division Operations.
+     */
+    public Quantity<U> subtract(Quantity<U> other, U targetUnit) {
+        if (other == null) {
+            throw new IllegalArgumentException("Operand cannot be null");
+        }
+        if (targetUnit == null) {
+            throw new IllegalArgumentException("Target unit cannot be null");
+        }
+        double baseDiff = this.unit.convertToBaseUnit(this.value) - other.unit.convertToBaseUnit(other.value);
+        double targetValue = targetUnit.convertFromBaseUnit(baseDiff);
+        return new Quantity<>(targetValue, targetUnit);
+    }
+
+    /**
+     * Divides this measurement by other, returning a dimensionless ratio (double).
+     * Both quantities must be of the same measurement category.
+     * Part of UC12: Subtraction and Division Operations.
+     *
+     * @throws ArithmeticException if the divisor is zero
+     * @throws IllegalArgumentException if operand is null
+     */
+    public double divide(Quantity<U> other) {
+        if (other == null) {
+            throw new IllegalArgumentException("Operand cannot be null");
+        }
+        double thisBase = this.unit.convertToBaseUnit(this.value);
+        double otherBase = other.unit.convertToBaseUnit(other.value);
+        if (Math.abs(otherBase) < 1e-12) {
+            throw new ArithmeticException("Division by zero: divisor quantity has zero base-unit value");
+        }
+        return thisBase / otherBase;
+    }
+
+
+    /**
      * Generic equality. Ensures measurements are equal by converting to their base unit.
      * Prevents cross-category comparisons (e.g. Length vs Weight) by checking unit classes.
      */
