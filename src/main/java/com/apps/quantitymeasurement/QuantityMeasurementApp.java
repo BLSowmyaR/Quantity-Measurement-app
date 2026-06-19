@@ -3,9 +3,9 @@ package com.apps.quantitymeasurement;
 /**
  * QuantityMeasurementApp – Unified Generic Quantity Measurement System
  *
- * Extended in UC12 to support Subtraction and Division operations.
+ * Extended in UC13 to introduce DRY ArithmeticOperation enum refactoring.
  *
- * @version 12.0
+ * @version 13.0
  * @author Development Team
  */
 public class QuantityMeasurementApp {
