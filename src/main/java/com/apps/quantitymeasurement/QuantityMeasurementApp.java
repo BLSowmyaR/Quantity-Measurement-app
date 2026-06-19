@@ -58,21 +58,9 @@ public class QuantityMeasurementApp {
         }
     }
 
-    // --- UC14 & UC16: Service Layer Refactoring with Persistence ---
-    // Controller layer instantiates the service and repository
-    private static final com.apps.quantitymeasurement.repository.IQuantityMeasurementRepository repository;
-    private static final QuantityMeasurementService service;
-
-    static {
-        // Simple factory logic
-        String repoType = com.apps.quantitymeasurement.config.ApplicationConfig.getProperty("repository.type", "database");
-        if ("database".equalsIgnoreCase(repoType)) {
-            repository = new com.apps.quantitymeasurement.repository.QuantityMeasurementDatabaseRepository();
-        } else {
-            repository = null; // We could implement a cache repository here if needed
-        }
-        service = new QuantityMeasurementService(repository);
-    }
+    // --- UC14: Service Layer Refactoring ---
+    // Service initialized for CLI usage without persistence
+    private static final QuantityMeasurementService service = new QuantityMeasurementService(null);
 
     /**
      * Demonstrates equality check using the service layer.
@@ -260,12 +248,6 @@ public class QuantityMeasurementApp {
 
     // Main method to demonstrate extended unit support, conversions, and additions
     public static void main(String[] args) {
-        System.out.println("=== Initializing Database Repository ===");
-        if (repository != null) {
-            repository.deleteAll();
-            System.out.println("Cleared database measurements.");
-        }
-
         System.out.println("=== Comparisons ===");
         demonstrateLengthComparison(1.0, LengthUnit.FEET, 12.0, LengthUnit.INCHES);
         demonstrateLengthComparison(1.0, LengthUnit.YARDS, 36.0, LengthUnit.INCHES);
@@ -354,14 +336,5 @@ public class QuantityMeasurementApp {
         demonstrateDivision(new Quantity<>(24.0, LengthUnit.INCHES), new Quantity<>(2.0, LengthUnit.FEET));
         demonstrateDivision(new Quantity<>(10.0, VolumeUnit.LITRE), new Quantity<>(5.0, VolumeUnit.LITRE));
         demonstrateDivision(new Quantity<>(2.0, WeightUnit.KILOGRAM), new Quantity<>(2000.0, WeightUnit.GRAM));
-
-        if (repository != null) {
-            System.out.println("=== Database Repository Statistics ===");
-            System.out.println("Total measurements saved: " + repository.getTotalCount());
-            System.out.println(repository.getPoolStatistics());
-            
-            System.out.println("Releasing resources...");
-            repository.releaseResources();
-        }
     }
 }
