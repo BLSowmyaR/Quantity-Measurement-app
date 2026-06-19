@@ -1,22 +1,29 @@
 package com.apps.quantitymeasurement;
 
 /**
- * QuantityMeasurementAppUC3 – Unified Quantity Measurement System
+ * QuantityMeasurementAppUC4 – Use Case 4: Extended Unit Support
  *
- * This class addresses the DRY (Don't Repeat Yourself) principle violations
- * present in the previous implementation where separate Feet and Inches classes
- * contained nearly identical code with:
- * - Identical constructor patterns
- * - Duplicate equals() method implementations
- * - Redundant validation logic
+ * This class extends the Quantity Measurement Application (UC3) by introducing
+ * support for additional length units: yards and centimeters.
  *
- * UC3 introduces a unified approach to handle multiple units of length measurement
- * by consolidating common functionality and eliminating code duplication.
- * This refactoring promotes code reusability, maintainability, and scalability
- * for adding new measurement units without repeating boilerplate code.
+ * <p>UC4 enhances the previous implementation by:
+ * <ul>
+ *   <li>Adding yard (yd) as a supported unit of length measurement</li>
+ *   <li>Adding centimeter (cm) as a supported unit of length measurement</li>
+ *   <li>Enabling conversion between all supported length units including feet, inches, yards, and centimeters</li>
+ *   <li>Maintaining backward compatibility with existing unit conversions from UC3</li>
+ * </ul>
  *
+ * <p><b>Supported Units:</b>
+ * <ul>
+ *   <li>Feet (ft)</li>
+ *   <li>Inches (in)</li>
+ *   <li>Yards (yd)</li>
+ *   <li>Centimeters (cm)</li>
+ * </ul>
+ *
+ * @version 4.0
  * @author Development Team
- * @version 3.0
  */
 public class QuantityMeasurementApp {
     // Inner class to represent Feet measurement (retained for backward compatibility)
@@ -76,38 +83,40 @@ public class QuantityMeasurementApp {
     // Create a generic method to demonstrate Length equality check
     public static boolean demonstrateLengthEquality(Length length1, Length length2) {
         boolean isEqual = length1.equals(length2);
-        String unit1 = length1.getUnit() == Length.LengthUnit.FEET ? "feet" : (length1.getValue() == 1.0 ? "inch" : "inches");
-        String unit2 = length2.getUnit() == Length.LengthUnit.FEET ? "feet" : (length2.getValue() == 1.0 ? "inch" : "inches");
-        System.out.println("Input: Quantity(" + length1.getValue() + ", \"" + unit1 + "\") and Quantity(" + length2.getValue() + ", \"" + unit2 + "\")");
+        System.out.println("Input: Quantity(" + length1.getValue() + ", " + length1.getUnit() + ") and Quantity(" + length2.getValue() + ", " + length2.getUnit() + ")");
         System.out.println("Output: Equal (" + isEqual + ")");
+        System.out.println();
         return isEqual;
     }
 
-    // Create a static method to demonstrate Feet equality check
-    public static void demonstrateFeetEquality() {
-        Length feet1 = new Length(1.0, Length.LengthUnit.FEET);
-        Length feet2 = new Length(1.0, Length.LengthUnit.FEET);
-        demonstrateLengthEquality(feet1, feet2);
+    // Create a static method to take in method parameters and demonstrate
+    // equality check
+    public static boolean demonstrateLengthComparison(double value1, Length.LengthUnit unit1, double value2, Length.LengthUnit unit2) {
+        Length length1 = new Length(value1, unit1);
+        Length length2 = new Length(value2, unit2);
+        return demonstrateLengthEquality(length1, length2);
     }
 
-    // Create a static method to demonstrate Inches equality check
-    public static void demonstrateInchesEquality() {
-        Length inches1 = new Length(1.0, Length.LengthUnit.INCHES);
-        Length inches2 = new Length(1.0, Length.LengthUnit.INCHES);
-        demonstrateLengthEquality(inches1, inches2);
-    }
-
-    // Create a static method to demonstrate Feet and Inches comparison
-    public static void demonstrateFeetInchesComparison() {
-        Length feet = new Length(1.0, Length.LengthUnit.FEET);
-        Length inches = new Length(12.0, Length.LengthUnit.INCHES);
-        demonstrateLengthEquality(feet, inches);
-    }
-
-    // Main method to demonstrate Feet and Inches equality checks and comparison checks
+    // Main method to demonstrate extended unit support
     public static void main(String[] args) {
-        demonstrateFeetEquality();
-        demonstrateInchesEquality();
-        demonstrateFeetInchesComparison();
+        // Demonstrate Feet and Inches comparison
+        demonstrateLengthComparison(1.0, Length.LengthUnit.FEET,
+                                    12.0, Length.LengthUnit.INCHES);
+
+        // Demonstrate Yards and Inches comparison
+        demonstrateLengthComparison(1.0, Length.LengthUnit.YARDS,
+                                    36.0, Length.LengthUnit.INCHES);
+
+        // Demonstrate Centimeters and Inches comparison
+        demonstrateLengthComparison(100.0, Length.LengthUnit.CENTIMETERS,
+                                    39.3701, Length.LengthUnit.INCHES);
+
+        // Demonstrate Feet and Yards comparison
+        demonstrateLengthComparison(3.0, Length.LengthUnit.FEET,
+                                    1.0, Length.LengthUnit.YARDS);
+
+        // Demonstrate Centimeters and Feet comparison
+        demonstrateLengthComparison(30.48, Length.LengthUnit.CENTIMETERS,
+                                    1.0, Length.LengthUnit.FEET);
     }
 }
