@@ -3,9 +3,9 @@ package com.apps.quantitymeasurement;
 /**
  * QuantityMeasurementApp – Unified Generic Quantity Measurement System
  *
- * Extended in UC11 to support Volume measurements (LITRE, MILLILITRE, GALLON).
+ * Extended in UC12 to support Subtraction and Division operations.
  *
- * @version 11.0
+ * @version 12.0
  * @author Development Team
  */
 public class QuantityMeasurementApp {
@@ -92,6 +92,36 @@ public class QuantityMeasurementApp {
         Quantity<U> result = q1.add(q2);
         System.out.println("Input: add(Quantity(" + formatValue(q1.getValue()) + ", " + q1.getUnit() + "), Quantity(" + formatValue(q2.getValue()) + ", " + q2.getUnit() + "))");
         System.out.println("Output: Quantity(" + formatValue(result.getValue()) + ", " + result.getUnit() + ")");
+        return result;
+    }
+
+    /**
+     * Demonstrates subtraction with implicit target unit.
+     */
+    public static <U extends IMeasurable> Quantity<U> demonstrateSubtraction(Quantity<U> q1, Quantity<U> q2) {
+        Quantity<U> result = q1.subtract(q2);
+        System.out.println("Input: subtract(Quantity(" + formatValue(q1.getValue()) + ", " + q1.getUnit() + "), Quantity(" + formatValue(q2.getValue()) + ", " + q2.getUnit() + "))");
+        System.out.println("Output: Quantity(" + formatValue(result.getValue()) + ", " + result.getUnit() + ")");
+        return result;
+    }
+
+    /**
+     * Demonstrates subtraction with explicitly specified target unit.
+     */
+    public static <U extends IMeasurable> Quantity<U> demonstrateSubtraction(Quantity<U> q1, Quantity<U> q2, U targetUnit) {
+        Quantity<U> result = q1.subtract(q2, targetUnit);
+        System.out.println("Input: subtract(Quantity(" + formatValue(q1.getValue()) + ", " + q1.getUnit() + "), Quantity(" + formatValue(q2.getValue()) + ", " + q2.getUnit() + "), " + targetUnit + ")");
+        System.out.println("Output: Quantity(" + formatValue(result.getValue()) + ", " + result.getUnit() + ")");
+        return result;
+    }
+
+    /**
+     * Demonstrates division returning a dimensionless ratio.
+     */
+    public static <U extends IMeasurable> double demonstrateDivision(Quantity<U> q1, Quantity<U> q2) {
+        double result = q1.divide(q2);
+        System.out.println("Input: divide(Quantity(" + formatValue(q1.getValue()) + ", " + q1.getUnit() + "), Quantity(" + formatValue(q2.getValue()) + ", " + q2.getUnit() + "))");
+        System.out.println("Output: " + result);
         return result;
     }
 
@@ -268,5 +298,19 @@ public class QuantityMeasurementApp {
         demonstrateAddition(v3, v4, VolumeUnit.GALLON);
         demonstrateAddition(new Quantity<>(500.0, VolumeUnit.MILLILITRE),
                             new Quantity<>(500.0, VolumeUnit.MILLILITRE));
+
+        // UC12 Subtract and Divide Demonstrations
+        System.out.println("=== UC12 Subtraction Demonstrations ===");
+        demonstrateSubtraction(new Quantity<>(10.0, LengthUnit.FEET), new Quantity<>(5.0, LengthUnit.FEET));
+        demonstrateSubtraction(new Quantity<>(10.0, LengthUnit.FEET), new Quantity<>(6.0, LengthUnit.INCHES));
+        demonstrateSubtraction(new Quantity<>(10.0, LengthUnit.FEET), new Quantity<>(6.0, LengthUnit.INCHES), LengthUnit.INCHES);
+        demonstrateSubtraction(new Quantity<>(5.0, VolumeUnit.LITRE), new Quantity<>(2.0, VolumeUnit.LITRE), VolumeUnit.MILLILITRE);
+        demonstrateSubtraction(new Quantity<>(1e6, WeightUnit.KILOGRAM), new Quantity<>(5e5, WeightUnit.KILOGRAM));
+
+        System.out.println("=== UC12 Division Demonstrations ===");
+        demonstrateDivision(new Quantity<>(10.0, LengthUnit.FEET), new Quantity<>(2.0, LengthUnit.FEET));
+        demonstrateDivision(new Quantity<>(24.0, LengthUnit.INCHES), new Quantity<>(2.0, LengthUnit.FEET));
+        demonstrateDivision(new Quantity<>(10.0, VolumeUnit.LITRE), new Quantity<>(5.0, VolumeUnit.LITRE));
+        demonstrateDivision(new Quantity<>(2.0, WeightUnit.KILOGRAM), new Quantity<>(2000.0, WeightUnit.GRAM));
     }
 }
