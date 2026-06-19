@@ -8,7 +8,9 @@ com\apps\quantitymeasurement\Quantity.class
 com\apps\quantitymeasurement\IMeasurable.class
 com\apps\quantitymeasurement\QuantityWeight.class
 com\apps\quantitymeasurement\VolumeUnit.class
+com\apps\quantitymeasurement\QuantityEntity.class
 com\apps\quantitymeasurement\Length.class
 com\apps\quantitymeasurement\QuantityMeasurementApp$Inches.class
+com\apps\quantitymeasurement\QuantityMeasurementService.class
 com\apps\quantitymeasurement\WeightUnit.class
 com\apps\quantitymeasurement\Quantity$ArithmeticOperation$1.class
