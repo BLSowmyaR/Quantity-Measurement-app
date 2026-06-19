@@ -7,7 +7,9 @@ package com.apps.quantitymeasurement;
 public class Length {
     public enum LengthUnit {
         FEET(1.0),
-        INCHES(1.0 / 12.0);
+        INCHES(1.0 / 12.0),
+        YARDS(3.0),
+        CENTIMETERS(0.393701 / 12.0);
 
         private final double conversionFactor;
 
@@ -59,12 +61,15 @@ public class Length {
         double thisValueInFeet = this.value * this.unit.getConversionFactor();
         double otherValueInFeet = other.value * other.unit.getConversionFactor();
         
-        return Double.compare(thisValueInFeet, otherValueInFeet) == 0;
+        // Use a tolerance delta to handle imprecise centimeter to feet/inches conversions
+        return Math.abs(thisValueInFeet - otherValueInFeet) < 1e-4;
     }
 
     @Override
     public int hashCode() {
         double valueInFeet = this.value * this.unit.getConversionFactor();
-        return Double.hashCode(valueInFeet);
+        // Round to 3 decimal places to keep hash code consistent for nearly equal values
+        long roundedValue = Math.round(valueInFeet * 1000.0);
+        return Long.hashCode(roundedValue);
     }
 }
