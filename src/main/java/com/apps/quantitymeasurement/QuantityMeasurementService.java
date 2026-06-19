@@ -1,16 +1,20 @@
 package com.apps.quantitymeasurement;
 
 import com.apps.quantitymeasurement.repository.IQuantityMeasurementRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  * Service Layer for Quantity Measurement Operations.
  * Encapsulates the business logic, mapping Entity requests to domain operations.
- * Part of UC-14 and UC-16: Service Layer Architecture and Database Persistence.
+ * Part of UC-14, UC-16, and UC-17: Service Layer Architecture, Database Persistence, and Spring Boot.
  */
+@Service
 public class QuantityMeasurementService {
 
     private final IQuantityMeasurementRepository repository;
 
+    @Autowired
     public QuantityMeasurementService(IQuantityMeasurementRepository repository) {
         this.repository = repository;
     }
