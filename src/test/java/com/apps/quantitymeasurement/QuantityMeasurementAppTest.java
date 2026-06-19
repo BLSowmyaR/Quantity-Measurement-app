@@ -397,4 +397,84 @@ public class QuantityMeasurementAppTest {
                 3.0, Length.LengthUnit.FEET
         ));
     }
+
+    // --- UC5 Unit Conversion Test Cases ---
+
+    @Test
+    public void testConversion_FeetToInches() {
+        assertEquals(12.0, QuantityMeasurementApp.convert(1.0, Length.LengthUnit.FEET, Length.LengthUnit.INCHES), 1e-6);
+    }
+
+    @Test
+    public void testConversion_InchesToFeet() {
+        assertEquals(2.0, QuantityMeasurementApp.convert(24.0, Length.LengthUnit.INCHES, Length.LengthUnit.FEET), 1e-6);
+    }
+
+    @Test
+    public void testConversion_YardsToInches() {
+        assertEquals(36.0, QuantityMeasurementApp.convert(1.0, Length.LengthUnit.YARDS, Length.LengthUnit.INCHES), 1e-6);
+    }
+
+    @Test
+    public void testConversion_InchesToYards() {
+        assertEquals(2.0, QuantityMeasurementApp.convert(72.0, Length.LengthUnit.INCHES, Length.LengthUnit.YARDS), 1e-6);
+    }
+
+    @Test
+    public void testConversion_CentimetersToInches() {
+        assertEquals(1.0, QuantityMeasurementApp.convert(2.54, Length.LengthUnit.CENTIMETERS, Length.LengthUnit.INCHES), 1e-6);
+    }
+
+    @Test
+    public void testConversion_FeatToYard() {
+        assertEquals(2.0, QuantityMeasurementApp.convert(6.0, Length.LengthUnit.FEET, Length.LengthUnit.YARDS), 1e-6);
+    }
+
+    @Test
+    public void testConversion_RoundTrip_PreservesValue() {
+        double originalValue = 10.0;
+        double feetToInches = QuantityMeasurementApp.convert(originalValue, Length.LengthUnit.FEET, Length.LengthUnit.INCHES);
+        double roundTrip = QuantityMeasurementApp.convert(feetToInches, Length.LengthUnit.INCHES, Length.LengthUnit.FEET);
+        assertEquals(originalValue, roundTrip, 1e-6);
+    }
+
+    @Test
+    public void testConversion_ZeroValue() {
+        assertEquals(0.0, QuantityMeasurementApp.convert(0.0, Length.LengthUnit.FEET, Length.LengthUnit.INCHES), 1e-6);
+    }
+
+    @Test
+    public void testConversion_NegativeValue() {
+        assertEquals(-12.0, QuantityMeasurementApp.convert(-1.0, Length.LengthUnit.FEET, Length.LengthUnit.INCHES), 1e-6);
+    }
+
+    @Test
+    public void testConversion_InvalidUnit_Throws() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            QuantityMeasurementApp.convert(1.0, null, Length.LengthUnit.FEET);
+        });
+        assertThrows(IllegalArgumentException.class, () -> {
+            QuantityMeasurementApp.convert(1.0, Length.LengthUnit.FEET, null);
+        });
+    }
+
+    @Test
+    public void testConversion_NaNOrInfinite_Throws() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            QuantityMeasurementApp.convert(Double.NaN, Length.LengthUnit.FEET, Length.LengthUnit.INCHES);
+        });
+        assertThrows(IllegalArgumentException.class, () -> {
+            QuantityMeasurementApp.convert(Double.POSITIVE_INFINITY, Length.LengthUnit.FEET, Length.LengthUnit.INCHES);
+        });
+        assertThrows(IllegalArgumentException.class, () -> {
+            QuantityMeasurementApp.convert(Double.NEGATIVE_INFINITY, Length.LengthUnit.FEET, Length.LengthUnit.INCHES);
+        });
+    }
+
+    @Test
+    public void testConversion_PrecisionTolerance() {
+        double result = QuantityMeasurementApp.convert(1.0, Length.LengthUnit.CENTIMETERS, Length.LengthUnit.INCHES);
+        // Asserting that it is approximately 0.393701 within standard epsilon delta (1e-6)
+        assertEquals(0.393701, result, 1e-6);
+    }
 }
