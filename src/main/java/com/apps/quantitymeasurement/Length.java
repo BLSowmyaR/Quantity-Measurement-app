@@ -73,6 +73,24 @@ public class Length {
     }
 
     /**
+     * Adds this length and another length, returning the result in the specified target unit.
+     * Part of UC7 Arithmetic Operations with Explicit Target Unit.
+     */
+    public Length add(Length other, LengthUnit targetUnit) {
+        if (other == null) {
+            throw new IllegalArgumentException("Operand cannot be null");
+        }
+        if (targetUnit == null) {
+            throw new IllegalArgumentException("Target unit cannot be null");
+        }
+        double valueInFeet1 = this.value * this.unit.getConversionFactor();
+        double valueInFeet2 = other.value * other.unit.getConversionFactor();
+        double sumInFeet = valueInFeet1 + valueInFeet2;
+        double sumInTargetUnit = sumInFeet / targetUnit.getConversionFactor();
+        return new Length(sumInTargetUnit, targetUnit);
+    }
+
+    /**
      * Compare two Length objects. They are equal if they represent the same
      * length after converting to the base unit (FEET).
      */
