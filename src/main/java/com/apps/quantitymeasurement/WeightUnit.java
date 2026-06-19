@@ -2,9 +2,10 @@ package com.apps.quantitymeasurement;
 
 /**
  * WeightUnit - Standalone enum representing weight units with conversion responsibility.
- * Part of UC9 Weight Support.
+ * Implements IMeasurable for generic quantity consolidation.
+ * Part of UC10 Generic Quantity Class refactoring.
  */
-public enum WeightUnit {
+public enum WeightUnit implements IMeasurable {
     KILOGRAM(1.0),
     GRAM(0.001),
     POUND(0.453592);
@@ -15,6 +16,7 @@ public enum WeightUnit {
         this.conversionFactor = conversionFactor;
     }
 
+    @Override
     public double getConversionFactor() {
         return conversionFactor;
     }
@@ -22,6 +24,7 @@ public enum WeightUnit {
     /**
      * Converts a value in this unit to the base unit (KILOGRAM).
      */
+    @Override
     public double convertToBaseUnit(double value) {
         return value * conversionFactor;
     }
@@ -29,6 +32,7 @@ public enum WeightUnit {
     /**
      * Converts a value from the base unit (KILOGRAM) to this unit.
      */
+    @Override
     public double convertFromBaseUnit(double baseValue) {
         return baseValue / conversionFactor;
     }

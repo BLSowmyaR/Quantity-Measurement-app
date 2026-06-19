@@ -1,16 +1,16 @@
 package com.apps.quantitymeasurement;
 
 /**
- * QuantityMeasurementApp – Unified Quantity Measurement System
+ * QuantityMeasurementApp – Unified Generic Quantity Measurement System
  *
- * Part of UC8 Refactoring.
+ * Part of UC10 Generic Quantity Class refactoring.
  *
- * @version 8.0
+ * @version 10.0
  * @author Development Team
  */
 public class QuantityMeasurementApp {
-    // Inner class to represent Feet measurement (retained for backward
-    // compatibility)
+
+    // Inner class to represent Feet measurement (retained for backward compatibility)
     public static class Feet {
         private final Length length;
 
@@ -18,9 +18,6 @@ public class QuantityMeasurementApp {
             this.length = new Length(value, LengthUnit.FEET);
         }
 
-        /**
-         * Override equals() method to compare two Feet objects by delegating to Length.
-         */
         @Override
         public boolean equals(Object obj) {
             if (this == obj) {
@@ -37,8 +34,7 @@ public class QuantityMeasurementApp {
         }
     }
 
-    // Inner class to represent Inches measurement (retained for backward
-    // compatibility)
+    // Inner class to represent Inches measurement (retained for backward compatibility)
     public static class Inches {
         private final Length length;
 
@@ -46,10 +42,6 @@ public class QuantityMeasurementApp {
             this.length = new Length(value, LengthUnit.INCHES);
         }
 
-        /**
-         * Override equals() method to compare two Inches objects by delegating to
-         * Length.
-         */
         @Override
         public boolean equals(Object obj) {
             if (this == obj) {
@@ -66,29 +58,69 @@ public class QuantityMeasurementApp {
         }
     }
 
-    // Create a generic method to demonstrate Length equality check
-    public static boolean demonstrateLengthEquality(Length length1, Length length2) {
-        boolean isEqual = length1.equals(length2);
-        System.out.println("Input: Quantity(" + length1.getValue() + ", " + length1.getUnit() + ") and Quantity("
-                + length2.getValue() + ", " + length2.getUnit() + ")");
+    // --- UC10 Generic Demonstration Methods ---
+
+    /**
+     * Demonstrates equality check on any two Quantity objects.
+     */
+    public static boolean demonstrateEquality(Quantity<?> q1, Quantity<?> q2) {
+        boolean isEqual = q1.equals(q2);
+        System.out.println("Input: Quantity(" + q1.getValue() + ", " + q1.getUnit() + ") and Quantity("
+                + q2.getValue() + ", " + q2.getUnit() + ")");
         System.out.println("Output: Equal (" + isEqual + ")");
         System.out.println();
         return isEqual;
     }
 
-    // Create a static method to take in method parameters and demonstrate
-    // equality check
-    public static boolean demonstrateLengthComparison(double value1, LengthUnit unit1, double value2,
-            LengthUnit unit2) {
-        Length length1 = new Length(value1, unit1);
-        Length length2 = new Length(value2, unit2);
-        return demonstrateLengthEquality(length1, length2);
+    /**
+     * Demonstrates unit conversion for any Quantity object.
+     */
+    public static <U extends IMeasurable> Quantity<U> demonstrateConversion(Quantity<U> quantity, U targetUnit) {
+        if (quantity == null) {
+            throw new IllegalArgumentException("Quantity object cannot be null");
+        }
+        Quantity<U> result = quantity.convertTo(targetUnit);
+        System.out.println("Input: convert(Quantity(" + quantity.getValue() + ", " + quantity.getUnit() + "), " + targetUnit
+                + ") -> Output: Quantity(" + formatValue(result.getValue()) + ", " + result.getUnit() + ")");
+        return result;
     }
 
     /**
-     * Public static API to convert values from one unit to another.
+     * Demonstrates addition with implicit target unit.
      */
+    public static <U extends IMeasurable> Quantity<U> demonstrateAddition(Quantity<U> q1, Quantity<U> q2) {
+        Quantity<U> result = q1.add(q2);
+        System.out.println("Input: add(Quantity(" + formatValue(q1.getValue()) + ", " + q1.getUnit() + "), Quantity(" + formatValue(q2.getValue()) + ", " + q2.getUnit() + "))");
+        System.out.println("Output: Quantity(" + formatValue(result.getValue()) + ", " + result.getUnit() + ")");
+        return result;
+    }
+
+    /**
+     * Demonstrates addition with explicitly specified target unit.
+     */
+    public static <U extends IMeasurable> Quantity<U> demonstrateAddition(Quantity<U> q1, Quantity<U> q2, U targetUnit) {
+        Quantity<U> result = q1.add(q2, targetUnit);
+        System.out.println("Input: add(Quantity(" + formatValue(q1.getValue()) + ", " + q1.getUnit() + "), " +
+                           "Quantity(" + formatValue(q2.getValue()) + ", " + q2.getUnit() + "), " +
+                           targetUnit + ")");
+        System.out.println("Output: Quantity(" + formatValue(result.getValue()) + ", " + result.getUnit() + ")");
+        System.out.println();
+        return result;
+    }
+
+    // --- Legacy / Compatibility Methods (delegates to Generic system) ---
+
+    public static boolean demonstrateLengthComparison(double value1, LengthUnit unit1, double value2, LengthUnit unit2) {
+        Length length1 = new Length(value1, unit1);
+        Length length2 = new Length(value2, unit2);
+        return demonstrateEquality(length1, length2);
+    }
+
     public static double convert(double value, LengthUnit source, LengthUnit target) {
+        return convertGeneric(value, source, target);
+    }
+
+    public static <U extends IMeasurable> double convertGeneric(double value, U source, U target) {
         if (source == null || target == null) {
             throw new IllegalArgumentException("Units cannot be null");
         }
@@ -99,33 +131,52 @@ public class QuantityMeasurementApp {
         return target.convertFromBaseUnit(valueInBase);
     }
 
-    /**
-     * Demonstrates conversion taking raw value and source/target units.
-     */
     public static double demonstrateLengthConversion(double value, LengthUnit source, LengthUnit target) {
         double result = convert(value, source, target);
         System.out.println("Input: convert(" + value + ", " + source + ", " + target + ") -> Output: " + result);
         return result;
     }
 
-    /**
-     * Demonstrates conversion taking a Length object and target unit.
-     */
     public static Length demonstrateLengthConversion(Length length, LengthUnit targetUnit) {
-        if (length == null) {
-            throw new IllegalArgumentException("Length object cannot be null");
-        }
-        Length result = length.convertTo(targetUnit);
-        System.out.println("Input: convert(Quantity(" + length.getValue() + ", " + length.getUnit() + "), " + targetUnit
-                + ") -> Output: Quantity(" + result.getValue() + ", " + result.getUnit() + ")");
-        return result;
+        Quantity<LengthUnit> result = demonstrateConversion(length, targetUnit);
+        return new Length(result.getValue(), result.getUnit());
     }
 
-    /**
-     * Helper method to format double values for display.
-     * Whole numbers and exact decimals are printed as is, whereas other numbers 
-     * are formatted to up to 3 decimal places with a tilde prefix.
-     */
+    public static Length add(Length length1, Length length2) {
+        if (length1 == null || length2 == null) {
+            throw new IllegalArgumentException("Operands cannot be null");
+        }
+        return length1.add(length2);
+    }
+
+    public static Length demonstrateLengthAddition(Length length1, Length length2) {
+        Quantity<LengthUnit> result = demonstrateAddition(length1, length2);
+        return new Length(result.getValue(), result.getUnit());
+    }
+
+    public static Length add(Length length1, Length length2, LengthUnit targetUnit) {
+        if (length1 == null || length2 == null) {
+            throw new IllegalArgumentException("Operands cannot be null");
+        }
+        if (targetUnit == null) {
+            throw new IllegalArgumentException("Target unit cannot be null");
+        }
+        return length1.add(length2, targetUnit);
+    }
+
+    public static double add(double value1, LengthUnit unit1, double value2, LengthUnit unit2, LengthUnit targetUnit) {
+        Length length1 = new Length(value1, unit1);
+        Length length2 = new Length(value2, unit2);
+        return add(length1, length2, targetUnit).getValue();
+    }
+
+    public static Length demonstrateLengthAddition(Length length1, Length length2, LengthUnit targetUnit) {
+        Quantity<LengthUnit> result = demonstrateAddition(length1, length2, targetUnit);
+        return new Length(result.getValue(), result.getUnit());
+    }
+
+    // --- Private display formatting helper ---
+
     private static String formatValue(double value) {
         if (value == (long) value) {
             return String.valueOf(value);
@@ -141,93 +192,22 @@ public class QuantityMeasurementApp {
         return "~" + rounded3;
     }
 
-    /**
-     * Adds two Lengths with implicit target unit (first operand's unit).
-     */
-    public static Length add(Length length1, Length length2) {
-        if (length1 == null || length2 == null) {
-            throw new IllegalArgumentException("Operands cannot be null");
-        }
-        return length1.add(length2);
-    }
-
-    /**
-     * Demonstrates addition with implicit target unit.
-     */
-    public static Length demonstrateLengthAddition(Length length1, Length length2) {
-        Length result = add(length1, length2);
-        System.out.println("Input: add(Quantity(" + formatValue(length1.getValue()) + ", " + length1.getUnit() + "), Quantity(" + formatValue(length2.getValue()) + ", " + length2.getUnit() + "))");
-        System.out.println("Output: Quantity(" + formatValue(result.getValue()) + ", " + result.getUnit() + ")");
-        return result;
-    }
-
-    /**
-     * Adds two Lengths with explicitly specified target unit.
-     */
-    public static Length add(Length length1, Length length2, LengthUnit targetUnit) {
-        if (length1 == null || length2 == null) {
-            throw new IllegalArgumentException("Operands cannot be null");
-        }
-        if (targetUnit == null) {
-            throw new IllegalArgumentException("Target unit cannot be null");
-        }
-        return length1.add(length2, targetUnit);
-    }
-
-    /**
-     * Overloaded static API to add raw length values and return the result value.
-     */
-    public static double add(double value1, LengthUnit unit1, double value2, LengthUnit unit2, LengthUnit targetUnit) {
-        Length length1 = new Length(value1, unit1);
-        Length length2 = new Length(value2, unit2);
-        return add(length1, length2, targetUnit).getValue();
-    }
-
-    /**
-     * Demonstrates addition with explicitly specified target unit.
-     */
-    public static Length demonstrateLengthAddition(Length length1, Length length2, LengthUnit targetUnit) {
-        Length result = add(length1, length2, targetUnit);
-        System.out.println("Input: add(Quantity(" + formatValue(length1.getValue()) + ", " + length1.getUnit() + "), " +
-                           "Quantity(" + formatValue(length2.getValue()) + ", " + length2.getUnit() + "), " +
-                           targetUnit + ")");
-        System.out.println("Output: Quantity(" + formatValue(result.getValue()) + ", " + result.getUnit() + ")");
-        System.out.println();
-        return result;
-    }
-
     // Main method to demonstrate extended unit support, conversions, and additions
     public static void main(String[] args) {
         System.out.println("=== Comparisons ===");
-        // Demonstrate Feet and Inches comparison
-        demonstrateLengthComparison(1.0, LengthUnit.FEET,
-                                    12.0, LengthUnit.INCHES);
-
-        // Demonstrate Yards and Inches comparison
-        demonstrateLengthComparison(1.0, LengthUnit.YARDS,
-                                    36.0, LengthUnit.INCHES);
-
-        // Demonstrate Centimeters and Inches comparison
-        demonstrateLengthComparison(100.0, LengthUnit.CENTIMETERS,
-                                    39.3701, LengthUnit.INCHES);
-
-        // Demonstrate Feet and Yards comparison
-        demonstrateLengthComparison(3.0, LengthUnit.FEET,
-                                    1.0, LengthUnit.YARDS);
-
-        // Demonstrate Centimeters and Feet comparison
-        demonstrateLengthComparison(30.48, LengthUnit.CENTIMETERS,
-                                    1.0, LengthUnit.FEET);
+        demonstrateLengthComparison(1.0, LengthUnit.FEET, 12.0, LengthUnit.INCHES);
+        demonstrateLengthComparison(1.0, LengthUnit.YARDS, 36.0, LengthUnit.INCHES);
+        demonstrateLengthComparison(100.0, LengthUnit.CENTIMETERS, 39.3701, LengthUnit.INCHES);
+        demonstrateLengthComparison(3.0, LengthUnit.FEET, 1.0, LengthUnit.YARDS);
+        demonstrateLengthComparison(30.48, LengthUnit.CENTIMETERS, 1.0, LengthUnit.FEET);
 
         System.out.println("=== Conversions ===");
-        // Demonstrate Conversions
         demonstrateLengthConversion(1.0, LengthUnit.FEET, LengthUnit.INCHES);
         demonstrateLengthConversion(3.0, LengthUnit.YARDS, LengthUnit.FEET);
         demonstrateLengthConversion(36.0, LengthUnit.INCHES, LengthUnit.YARDS);
         demonstrateLengthConversion(1.0, LengthUnit.CENTIMETERS, LengthUnit.INCHES);
         demonstrateLengthConversion(0.0, LengthUnit.FEET, LengthUnit.INCHES);
 
-        // Overloaded instance method demonstration
         Length lengthInYards = new Length(3.0, LengthUnit.YARDS);
         demonstrateLengthConversion(lengthInYards, LengthUnit.FEET);
 
@@ -250,5 +230,19 @@ public class QuantityMeasurementApp {
         demonstrateLengthAddition(new Length(2.54, LengthUnit.CENTIMETERS), new Length(1.0, LengthUnit.INCHES), LengthUnit.CENTIMETERS);
         demonstrateLengthAddition(new Length(5.0, LengthUnit.FEET), new Length(0.0, LengthUnit.INCHES), LengthUnit.YARDS);
         demonstrateLengthAddition(new Length(5.0, LengthUnit.FEET), new Length(-2.0, LengthUnit.FEET), LengthUnit.INCHES);
+
+        // UC9 and UC10 specific demonstrations
+        System.out.println("=== UC10 Generic Quantity and Weight Demonstrations ===");
+        Quantity<WeightUnit> w1 = new Quantity<>(1.0, WeightUnit.KILOGRAM);
+        Quantity<WeightUnit> w2 = new Quantity<>(1000.0, WeightUnit.GRAM);
+        demonstrateEquality(w1, w2);
+
+        demonstrateConversion(w1, WeightUnit.GRAM);
+        demonstrateConversion(new Quantity<>(2.20462, WeightUnit.POUND), WeightUnit.KILOGRAM);
+
+        Quantity<WeightUnit> w3 = new Quantity<>(500.0, WeightUnit.GRAM);
+        Quantity<WeightUnit> w4 = new Quantity<>(0.5, WeightUnit.KILOGRAM);
+        demonstrateAddition(w3, w4);
+        demonstrateAddition(w1, w3, WeightUnit.GRAM);
     }
 }
