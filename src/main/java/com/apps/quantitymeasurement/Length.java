@@ -2,26 +2,9 @@ package com.apps.quantitymeasurement;
 
 /**
  * Length - Represents a length measurement with a value and a unit.
- * Part of UC3 Generic Quantity Class for DRY Principle.
+ * Part of UC8 Refactoring.
  */
 public class Length {
-    public enum LengthUnit {
-        FEET(1.0),
-        INCHES(1.0 / 12.0),
-        YARDS(3.0),
-        CENTIMETERS(0.393701 / 12.0);
-
-        private final double conversionFactor;
-
-        LengthUnit(double conversionFactor) {
-            this.conversionFactor = conversionFactor;
-        }
-
-        public double getConversionFactor() {
-            return conversionFactor;
-        }
-    }
-
     private final double value;
     private final LengthUnit unit;
 
@@ -46,35 +29,29 @@ public class Length {
 
     /**
      * Converts this length to a target unit, returning a new Length object.
-     * Part of UC5 Unit Conversion.
+     * Delegates conversion responsibility to LengthUnit.
      */
     public Length convertTo(LengthUnit targetUnit) {
         if (targetUnit == null) {
             throw new IllegalArgumentException("Target unit cannot be null");
         }
-        double valueInFeet = this.value * this.unit.getConversionFactor();
-        double convertedValue = valueInFeet / targetUnit.getConversionFactor();
+        double valueInBase = this.unit.convertToBaseUnit(this.value);
+        double convertedValue = targetUnit.convertFromBaseUnit(valueInBase);
         return new Length(convertedValue, targetUnit);
     }
 
     /**
      * Adds two Length measurements with implicit target unit (unit of this operand).
-     * Part of UC6 Arithmetic Operations.
      */
     public Length add(Length other) {
         if (other == null) {
             throw new IllegalArgumentException("Operand cannot be null");
         }
-        double valueInFeet1 = this.value * this.unit.getConversionFactor();
-        double valueInFeet2 = other.value * other.unit.getConversionFactor();
-        double sumInFeet = valueInFeet1 + valueInFeet2;
-        double sumInTargetUnit = sumInFeet / this.unit.getConversionFactor();
-        return new Length(sumInTargetUnit, this.unit);
+        return add(other, this.unit);
     }
 
     /**
      * Adds this length and another length, returning the result in the specified target unit.
-     * Part of UC7 Arithmetic Operations with Explicit Target Unit.
      */
     public Length add(Length other, LengthUnit targetUnit) {
         if (other == null) {
@@ -83,10 +60,10 @@ public class Length {
         if (targetUnit == null) {
             throw new IllegalArgumentException("Target unit cannot be null");
         }
-        double valueInFeet1 = this.value * this.unit.getConversionFactor();
-        double valueInFeet2 = other.value * other.unit.getConversionFactor();
-        double sumInFeet = valueInFeet1 + valueInFeet2;
-        double sumInTargetUnit = sumInFeet / targetUnit.getConversionFactor();
+        double valueInBase1 = this.unit.convertToBaseUnit(this.value);
+        double valueInBase2 = other.unit.convertToBaseUnit(other.value);
+        double sumInBase = valueInBase1 + valueInBase2;
+        double sumInTargetUnit = targetUnit.convertFromBaseUnit(sumInBase);
         return new Length(sumInTargetUnit, targetUnit);
     }
 
@@ -107,18 +84,18 @@ public class Length {
         }
         Length other = (Length) obj;
         
-        double thisValueInFeet = this.value * this.unit.getConversionFactor();
-        double otherValueInFeet = other.value * other.unit.getConversionFactor();
+        double thisValueInBase = this.unit.convertToBaseUnit(this.value);
+        double otherValueInBase = other.unit.convertToBaseUnit(other.value);
         
         // Use a tolerance delta to handle imprecise centimeter to feet/inches conversions
-        return Math.abs(thisValueInFeet - otherValueInFeet) < 1e-4;
+        return Math.abs(thisValueInBase - otherValueInBase) < 1e-4;
     }
 
     @Override
     public int hashCode() {
-        double valueInFeet = this.value * this.unit.getConversionFactor();
+        double valueInBase = this.unit.convertToBaseUnit(this.value);
         // Round to 3 decimal places to keep hash code consistent for nearly equal values
-        long roundedValue = Math.round(valueInFeet * 1000.0);
+        long roundedValue = Math.round(valueInBase * 1000.0);
         return Long.hashCode(roundedValue);
     }
 }
