@@ -3,9 +3,9 @@ package com.apps.quantitymeasurement;
 /**
  * QuantityMeasurementApp – Unified Generic Quantity Measurement System
  *
- * Part of UC10 Generic Quantity Class refactoring.
+ * Extended in UC11 to support Volume measurements (LITRE, MILLILITRE, GALLON).
  *
- * @version 10.0
+ * @version 11.0
  * @author Development Team
  */
 public class QuantityMeasurementApp {
@@ -244,5 +244,29 @@ public class QuantityMeasurementApp {
         Quantity<WeightUnit> w4 = new Quantity<>(0.5, WeightUnit.KILOGRAM);
         demonstrateAddition(w3, w4);
         demonstrateAddition(w1, w3, WeightUnit.GRAM);
+
+        // UC11 Volume Demonstrations
+        System.out.println("=== UC11 Volume Equality ===");
+        Quantity<VolumeUnit> v1 = new Quantity<>(1.0, VolumeUnit.LITRE);
+        Quantity<VolumeUnit> v2 = new Quantity<>(1000.0, VolumeUnit.MILLILITRE);
+        demonstrateEquality(v1, v2);
+
+        Quantity<VolumeUnit> v3 = new Quantity<>(1.0, VolumeUnit.GALLON);
+        Quantity<VolumeUnit> v4 = new Quantity<>(3.78541, VolumeUnit.LITRE);
+        demonstrateEquality(v3, v4);
+
+        System.out.println("=== UC11 Volume Conversions ===");
+        demonstrateConversion(v1, VolumeUnit.MILLILITRE);
+        demonstrateConversion(v2, VolumeUnit.LITRE);
+        demonstrateConversion(v3, VolumeUnit.LITRE);
+        demonstrateConversion(new Quantity<>(3.78541, VolumeUnit.LITRE), VolumeUnit.GALLON);
+        demonstrateConversion(new Quantity<>(1000.0, VolumeUnit.MILLILITRE), VolumeUnit.GALLON);
+
+        System.out.println("=== UC11 Volume Additions ===");
+        demonstrateAddition(v1, v2);
+        demonstrateAddition(v1, v2, VolumeUnit.MILLILITRE);
+        demonstrateAddition(v3, v4, VolumeUnit.GALLON);
+        demonstrateAddition(new Quantity<>(500.0, VolumeUnit.MILLILITRE),
+                            new Quantity<>(500.0, VolumeUnit.MILLILITRE));
     }
 }
