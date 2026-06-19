@@ -477,4 +477,112 @@ public class QuantityMeasurementAppTest {
         // Asserting that it is approximately 0.393701 within standard epsilon delta (1e-6)
         assertEquals(0.393701, result, 1e-6);
     }
+
+    // --- UC6 & UC7 Addition Test Cases ---
+
+    @Test
+    public void testAddition_SameUnit_FeetPlusFeet() {
+        Length feet1 = new Length(1.0, Length.LengthUnit.FEET);
+        Length feet2 = new Length(2.0, Length.LengthUnit.FEET);
+        Length result = QuantityMeasurementApp.add(feet1, feet2);
+        assertEquals(new Length(3.0, Length.LengthUnit.FEET), result);
+    }
+
+    @Test
+    public void testAddition_SameUnit_InchPlusInch() {
+        Length inch1 = new Length(6.0, Length.LengthUnit.INCHES);
+        Length inch2 = new Length(6.0, Length.LengthUnit.INCHES);
+        Length result = QuantityMeasurementApp.add(inch1, inch2);
+        assertEquals(new Length(12.0, Length.LengthUnit.INCHES), result);
+    }
+
+    @Test
+    public void testAddition_CrossUnit_FeetPlusInches() {
+        Length feet = new Length(1.0, Length.LengthUnit.FEET);
+        Length inches = new Length(12.0, Length.LengthUnit.INCHES);
+        Length result = QuantityMeasurementApp.add(feet, inches);
+        assertEquals(new Length(2.0, Length.LengthUnit.FEET), result);
+    }
+
+    @Test
+    public void testAddition_CrossUnit_InchPlusFeet() {
+        Length inches = new Length(12.0, Length.LengthUnit.INCHES);
+        Length feet = new Length(1.0, Length.LengthUnit.FEET);
+        Length result = QuantityMeasurementApp.add(inches, feet);
+        assertEquals(new Length(24.0, Length.LengthUnit.INCHES), result);
+    }
+
+    @Test
+    public void testAddition_CrossUnit_YardPlusFeet() {
+        Length yard = new Length(1.0, Length.LengthUnit.YARDS);
+        Length feet = new Length(3.0, Length.LengthUnit.FEET);
+        Length result = QuantityMeasurementApp.add(yard, feet);
+        assertEquals(new Length(2.0, Length.LengthUnit.YARDS), result);
+    }
+
+    @Test
+    public void testAddition_CrossUnit_CentimeterPlusInch() {
+        Length cm = new Length(2.54, Length.LengthUnit.CENTIMETERS);
+        Length inch = new Length(1.0, Length.LengthUnit.INCHES);
+        Length result = QuantityMeasurementApp.add(cm, inch);
+        // 2.54 cm + 1.0 inch (in target unit CENTIMETERS)
+        // 1.0 inch = 2.54 cm, so total is 5.08 cm
+        assertEquals(new Length(5.08, Length.LengthUnit.CENTIMETERS), result);
+    }
+
+    @Test
+    public void testAddition_Commutativity() {
+        Length feet = new Length(1.0, Length.LengthUnit.FEET);
+        Length inches = new Length(12.0, Length.LengthUnit.INCHES);
+        
+        Length feetPlusInches = QuantityMeasurementApp.add(feet, inches);
+        Length inchesPlusFeet = QuantityMeasurementApp.add(inches, feet);
+        
+        // They are equal in length, although their target units differ (Feet vs Inches).
+        // Let's assert they are equal as measurements:
+        assertTrue(feetPlusInches.equals(inchesPlusFeet));
+    }
+
+    @Test
+    public void testAddition_WithZero() {
+        Length feet = new Length(5.0, Length.LengthUnit.FEET);
+        Length inches = new Length(0.0, Length.LengthUnit.INCHES);
+        Length result = QuantityMeasurementApp.add(feet, inches);
+        assertEquals(new Length(5.0, Length.LengthUnit.FEET), result);
+    }
+
+    @Test
+    public void testAddition_NegativeValues() {
+        Length feet1 = new Length(5.0, Length.LengthUnit.FEET);
+        Length feet2 = new Length(-2.0, Length.LengthUnit.FEET);
+        Length result = QuantityMeasurementApp.add(feet1, feet2);
+        assertEquals(new Length(3.0, Length.LengthUnit.FEET), result);
+    }
+
+    @Test
+    public void testAddition_NullSecondOperand() {
+        Length feet = new Length(1.0, Length.LengthUnit.FEET);
+        assertThrows(IllegalArgumentException.class, () -> {
+            QuantityMeasurementApp.add(feet, null);
+        });
+        assertThrows(IllegalArgumentException.class, () -> {
+            QuantityMeasurementApp.add(null, feet);
+        });
+    }
+
+    @Test
+    public void testAddition_LargeValues() {
+        Length feet1 = new Length(1000000.0, Length.LengthUnit.FEET);
+        Length feet2 = new Length(1000000.0, Length.LengthUnit.FEET);
+        Length result = QuantityMeasurementApp.add(feet1, feet2);
+        assertEquals(new Length(2000000.0, Length.LengthUnit.FEET), result);
+    }
+
+    @Test
+    public void testAddition_SmallValues() {
+        Length feet1 = new Length(0.001, Length.LengthUnit.FEET);
+        Length feet2 = new Length(0.002, Length.LengthUnit.FEET);
+        Length result = QuantityMeasurementApp.add(feet1, feet2);
+        assertEquals(new Length(0.003, Length.LengthUnit.FEET), result);
+    }
 }

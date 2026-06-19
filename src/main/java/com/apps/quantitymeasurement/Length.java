@@ -58,6 +58,21 @@ public class Length {
     }
 
     /**
+     * Adds two Length measurements with implicit target unit (unit of this operand).
+     * Part of UC6 Arithmetic Operations.
+     */
+    public Length add(Length other) {
+        if (other == null) {
+            throw new IllegalArgumentException("Operand cannot be null");
+        }
+        double valueInFeet1 = this.value * this.unit.getConversionFactor();
+        double valueInFeet2 = other.value * other.unit.getConversionFactor();
+        double sumInFeet = valueInFeet1 + valueInFeet2;
+        double sumInTargetUnit = sumInFeet / this.unit.getConversionFactor();
+        return new Length(sumInTargetUnit, this.unit);
+    }
+
+    /**
      * Compare two Length objects. They are equal if they represent the same
      * length after converting to the base unit (FEET).
      */
