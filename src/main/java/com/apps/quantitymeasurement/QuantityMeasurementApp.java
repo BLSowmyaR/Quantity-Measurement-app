@@ -117,7 +117,63 @@ public class QuantityMeasurementApp {
         return result;
     }
 
-    // Main method to demonstrate extended unit support and conversions
+    /**
+     * Helper method to format double values for display.
+     * Whole numbers and exact decimals are printed as is, whereas other numbers 
+     * are formatted to up to 3 decimal places with a tilde prefix.
+     */
+    private static String formatValue(double value) {
+        if (value == (long) value) {
+            return String.valueOf(value);
+        }
+        double rounded2 = Math.round(value * 100.0) / 100.0;
+        if (Math.abs(value - rounded2) < 1e-12) {
+            return String.valueOf(rounded2);
+        }
+        double rounded3 = Math.round(value * 1000.0) / 1000.0;
+        if (Math.abs(value - rounded3) < 1e-12) {
+            return String.valueOf(rounded3);
+        }
+        return "~" + rounded3;
+    }
+
+    /**
+     * Adds two Lengths with explicitly specified target unit.
+     * Part of UC7 Arithmetic Operations with Target Unit.
+     */
+    public static Length add(Length length1, Length length2, Length.LengthUnit targetUnit) {
+        if (length1 == null || length2 == null) {
+            throw new IllegalArgumentException("Operands cannot be null");
+        }
+        if (targetUnit == null) {
+            throw new IllegalArgumentException("Target unit cannot be null");
+        }
+        return length1.add(length2, targetUnit);
+    }
+
+    /**
+     * Overloaded static API to add raw length values and return the result value.
+     */
+    public static double add(double value1, Length.LengthUnit unit1, double value2, Length.LengthUnit unit2, Length.LengthUnit targetUnit) {
+        Length length1 = new Length(value1, unit1);
+        Length length2 = new Length(value2, unit2);
+        return add(length1, length2, targetUnit).getValue();
+    }
+
+    /**
+     * Demonstrates addition with explicitly specified target unit (UC7).
+     */
+    public static Length demonstrateLengthAddition(Length length1, Length length2, Length.LengthUnit targetUnit) {
+        Length result = add(length1, length2, targetUnit);
+        System.out.println("Input: add(Quantity(" + formatValue(length1.getValue()) + ", " + length1.getUnit() + "), " +
+                           "Quantity(" + formatValue(length2.getValue()) + ", " + length2.getUnit() + "), " +
+                           targetUnit + ")");
+        System.out.println("Output: Quantity(" + formatValue(result.getValue()) + ", " + result.getUnit() + ")");
+        System.out.println();
+        return result;
+    }
+
+    // Main method to demonstrate extended unit support, conversions, and additions
     public static void main(String[] args) {
         System.out.println("=== Comparisons ===");
         // Demonstrate Feet and Inches comparison
@@ -151,5 +207,15 @@ public class QuantityMeasurementApp {
         // Overloaded instance method demonstration
         Length lengthInYards = new Length(3.0, Length.LengthUnit.YARDS);
         demonstrateLengthConversion(lengthInYards, Length.LengthUnit.FEET);
+
+        System.out.println("=== Additions (Explicit Target Unit - UC7) ===");
+        demonstrateLengthAddition(new Length(1.0, Length.LengthUnit.FEET), new Length(12.0, Length.LengthUnit.INCHES), Length.LengthUnit.FEET);
+        demonstrateLengthAddition(new Length(1.0, Length.LengthUnit.FEET), new Length(12.0, Length.LengthUnit.INCHES), Length.LengthUnit.INCHES);
+        demonstrateLengthAddition(new Length(1.0, Length.LengthUnit.FEET), new Length(12.0, Length.LengthUnit.INCHES), Length.LengthUnit.YARDS);
+        demonstrateLengthAddition(new Length(1.0, Length.LengthUnit.YARDS), new Length(3.0, Length.LengthUnit.FEET), Length.LengthUnit.YARDS);
+        demonstrateLengthAddition(new Length(36.0, Length.LengthUnit.INCHES), new Length(1.0, Length.LengthUnit.YARDS), Length.LengthUnit.FEET);
+        demonstrateLengthAddition(new Length(2.54, Length.LengthUnit.CENTIMETERS), new Length(1.0, Length.LengthUnit.INCHES), Length.LengthUnit.CENTIMETERS);
+        demonstrateLengthAddition(new Length(5.0, Length.LengthUnit.FEET), new Length(0.0, Length.LengthUnit.INCHES), Length.LengthUnit.YARDS);
+        demonstrateLengthAddition(new Length(5.0, Length.LengthUnit.FEET), new Length(-2.0, Length.LengthUnit.FEET), Length.LengthUnit.INCHES);
     }
 }
